@@ -1,40 +1,27 @@
-extends KinematicBody2D
+extends KinematicBody2D;
 
 # constants
 
-const WALK_SPEED_MAX = 250.0
-const WALK_ACCELERATION = 250.0
-const WALK_FRICTION = 20.0
+const WALK_SPEED_MAX = 300.0;
+const WALK_ACCELERATION = 2000.0;
+const WALK_FRICTION = 20.0;
 
 # variables
 
-var motion = Vector2()
-var walk_motion = Vector2()
+var velocity = Vector2.ZERO;
 
 # functions
 
-func _physics_process(delta):	
-	update_walk_motion()
+func _physics_process(delta):
+	var input_vector = Vector2.ZERO;
+	input_vector.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left");
+	input_vector.y = Input.get_action_strength("move_down") - Input.get_action_strength("move_up");
+	input_vector = input_vector.normalized();
 	
-	motion = walk_motion
-	motion = move_and_slide(motion)
-
-func update_walk_motion():
-	var axis = get_input_axis()
-	
-	if (axis.x == 0):
-		walk_motion.x = lerp(walk_motion.x, 0, (WALK_FRICTION / 100.0))
+	if (input_vector != Vector2.ZERO):
+		velocity += input_vector * WALK_ACCELERATION * delta;
+		velocity = velocity.clamped(WALK_SPEED_MAX * delta);
 	else:
-		walk_motion.x = clamp((walk_motion.x + (axis.x * WALK_ACCELERATION)), -WALK_SPEED_MAX, WALK_SPEED_MAX)
-		
-	if (axis.y == 0):
-		walk_motion.y = lerp(walk_motion.y, 0, (WALK_FRICTION / 100.0))
-	else:
-		walk_motion.y = clamp((walk_motion.y + (axis.y * WALK_ACCELERATION)), -WALK_SPEED_MAX, WALK_SPEED_MAX)
-
-func get_input_axis():
-	var axis = Vector2.ZERO
-	axis.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
-	axis.y = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
+		velocity = velocity.move_toward(Vector2.ZERO, (WALK_FRICTION * delta));
 	
-	return axis.normalized()
+	move_and_collide(velocity);
