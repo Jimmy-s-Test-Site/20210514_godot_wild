@@ -1,10 +1,10 @@
 extends KinematicBody2D;
 
-# constants
+# instance variables
 
-const WALK_SPEED_MAX = 300.0;
-const WALK_ACCELERATION = 2000.0;
-const WALK_FRICTION = 20.0;
+export (float) var walk_speed_max = 300.0;
+export (float) var walk_acceleration = 2000.0;
+export (float) var walk_friction = 20.0;
 
 # variables
 
@@ -18,10 +18,10 @@ func _physics_process(delta):
 	input_vector.y = Input.get_action_strength("move_down") - Input.get_action_strength("move_up");
 	input_vector = input_vector.normalized();
 	
-	if (input_vector != Vector2.ZERO):
-		velocity += input_vector * WALK_ACCELERATION * delta;
-		velocity = velocity.clamped(WALK_SPEED_MAX * delta);
+	if (input_vector == Vector2.ZERO):
+		velocity = velocity.move_toward(Vector2.ZERO, (walk_friction * delta));
 	else:
-		velocity = velocity.move_toward(Vector2.ZERO, (WALK_FRICTION * delta));
+		velocity += input_vector * walk_acceleration * delta;
+		velocity = velocity.clamped(walk_speed_max * delta);
 	
 	move_and_collide(velocity);
