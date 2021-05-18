@@ -15,6 +15,7 @@
 - [ ] Kids to roam around and turn into candy
 - [ ] Adults to shoo away player
 - [x] Cops that attack the player
+- [ ] Ending Scene
 
 ## Art
 
