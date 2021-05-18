@@ -28,6 +28,7 @@ func _physics_process(delta: float) -> void:
 		STATE.ROAM:
 			if self.patrol_path == null:
 				return
+				## JUSTIN - below is path follow script
 			
 			self.target = self.patrol_points[self.patrol_index]
 			
