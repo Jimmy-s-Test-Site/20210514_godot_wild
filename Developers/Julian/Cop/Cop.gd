@@ -20,37 +20,50 @@ var movement := Vector2.ZERO
 var patrol_points
 var patrol_index = 0
 
+
+# ------
+
+
 func _ready() -> void:
 	if self.patrol_path != null:
 		self.patrol_points = self.get_node(patrol_path).curve.get_baked_points()
 
+
 func _physics_process(delta: float) -> void:
-	match self.state:
-		STATE.ROAM:
-			# if no path do nothing/stay still
-			if self.patrol_path != null:
-				## JUSTIN - below is path follow script
-				
-				self.target = self.patrol_points[self.patrol_index]
-				
-				if self.position.distance_to(self.target) < self.min_patrol_point_distance:
-					self.patrol_index = (self.patrol_index + 1) % self.patrol_points.size()
+	if $StunTimer.is_stopped():
+		match self.state:
+			STATE.ROAM:
+				# if no path do nothing/stay still
+				if self.patrol_path != null:
+					## JUSTIN - below is path follow script
+					
 					self.target = self.patrol_points[self.patrol_index]
-				
-				self.move_and_slide(self.position.direction_to(self.target) * self.speed * delta)
+					
+					if self.position.distance_to(self.target) < self.min_patrol_point_distance:
+						self.patrol_index = (self.patrol_index + 1) % self.patrol_points.size()
+						self.target = self.patrol_points[self.patrol_index]
+					
+					self.move_and_slide(self.position.direction_to(self.target) * self.speed * delta)
+			
+			STATE.CHASE:
+				self.target = self.global_position.direction_to(self.player.global_position)
+				self.move_and_slide(self.target * self.speed * delta)
 		
-		STATE.CHASE:
-			self.target = self.global_position.direction_to(self.player.global_position)
-			self.move_and_slide(self.target * self.speed * delta)
-	
-	self.attack_manager()
-	
-	self.animation_manager()
+		self.attack_manager()
+		
+		self.animation_manager()
+
+
+# ------
 
 
 func attack_manager() -> void:
 	if self.attacking and $AttackTimer.is_stopped():
 		self.player.take_damage()
+
+
+func receive_damage() -> void:
+	$StunTimer.start()
 
 
 func animation_manager() -> void:
@@ -61,6 +74,9 @@ func animation_manager() -> void:
 			$Sprite.flip_h = true
 		1:
 			$Sprite.flip_h = false
+
+
+# ------
 
 
 func _on_Area2D_body_entered(body: Node) -> void:
