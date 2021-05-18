@@ -59,6 +59,7 @@ func _physics_process(delta: float) -> void:
 func attack_manager() -> void:
 	if self.attacking and $AttackTimer.is_stopped():
 		self.player.take_damage()
+		$AttackTimer.start()
 
 
 func receive_damage() -> void:
@@ -92,6 +93,7 @@ func _on_Area2D_body_exited(body: Node) -> void:
 
 func _on_AttackArea2D_body_entered(body: Node) -> void:
 	if $InitTimer.is_stopped() and body.name == "Player":
+		$AttackTimer.start()
 		self.attacking = true
 
 

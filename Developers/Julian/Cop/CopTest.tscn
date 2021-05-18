@@ -27,7 +27,7 @@ player_path = NodePath("../../Player")
 curve = SubResource( 1 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2( 269, 265 )
+position = Vector2( 55, 285 )
 __meta__ = {
 "_edit_group_": true
 }
