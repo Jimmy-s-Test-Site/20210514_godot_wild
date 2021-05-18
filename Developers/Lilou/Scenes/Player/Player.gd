@@ -8,6 +8,10 @@ export (float) var walk_friction = 20.0;
 
 # class variables
 
+# 	state
+
+var health = 3;
+
 # 	movement
 
 var velocity = Vector2.ZERO;
@@ -16,16 +20,19 @@ var velocity = Vector2.ZERO;
 
 export (float) var cast_distance_max = 350.0;
 export (float) var cast_time = 0.2;
-onready var spell = $Spell;
-onready var spell_raycast = $Spell/SpellRayCast;
-onready var spell_line = $Spell/SpellRayCast/SpellLine;
+onready var spell_raycast = $SpellRayCast;
+onready var spell_line = $SpellRayCast/SpellLine;
 
 # functions
 
-func _ready():
-	spell_raycast.position = Vector2(cast_distance_max, 0);
+#func _ready():
+#	spell_raycast.cast_to = Vector2(cast_distance_max, 0);
 
 func _physics_process(delta: float) -> void:
+	
+	# state update
+	if (health <= 0):
+		kill();
 	
 	# movement update
 	
@@ -44,26 +51,40 @@ func _physics_process(delta: float) -> void:
 	
 	# abilities update
 	
-	if Input.is_action_just_pressed("fire"):
-		fire();
+	if Input.is_action_just_pressed("cast_spell"):
+		cast_spell();
+
+# 	state
+
+func take_damage(amount: int = 1) -> void:
+	health -= amount;
+
+func kill() -> void:
+	get_tree().reload_current_scene();
 
 # 	abilities
 
-func fire():
-	spell.global_rotation = global_position.angle_to_point(get_global_mouse_position()) - PI;
-	#spell_raycast.cast_to = get_local_mouse_position();
-	#spell_raycast.cast_to = spell_raycast.cast_to.clamped(cast_distance_max);
+func cast_spell():
+	spell_raycast.enabled = true;
+	
+	var cast_line = get_global_mouse_position() - spell_raycast.global_position;
+	cast_line = cast_line.clamped(cast_distance_max);
+	
+	spell_raycast.cast_to = cast_line;
+	
 	spell_line.clear_points();
 	spell_line.add_point(Vector2.ZERO);
-	spell_line.add_point(spell_raycast.cast_to);
+	
+	if spell_raycast.is_colliding():
+		spell_line.add_point(spell_raycast.get_collision_point());
+	else:
+		spell_line.add_point(cast_line);
 	
 	var hit = spell_raycast.get_collider();
 	
-	if spell_raycast.is_colliding() and hit.has_method("tranform"):
+	if (spell_raycast.is_colliding() and hit.has_method("transform")):
 		hit.transform();
 	
-	yield(get_tree().create_timer(cast_time), "timeout");
-	
-	spell_line.clear_points();
+	spell_raycast.enabled = false;
 	
 # 	helpers

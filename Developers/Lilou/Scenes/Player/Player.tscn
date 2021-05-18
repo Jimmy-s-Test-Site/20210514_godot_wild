@@ -1,26 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
 [ext_resource path="res://Developers/Lilou/Scenes/Player/Player.gd" type="Script" id=2]
-
-[sub_resource type="GDScript" id=1]
-script/source = "extends Node2D
-
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = \"text\"
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-"
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 32, 32 )
@@ -28,18 +9,13 @@ extents = Vector2( 32, 32 )
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 2 )
 
-[node name="Spell" type="Node2D" parent="."]
+[node name="SpellRayCast" type="RayCast2D" parent="."]
 position = Vector2( 50, 0 )
-script = SubResource( 1 )
-
-[node name="SpellRayCast" type="RayCast2D" parent="Spell"]
-enabled = true
 cast_to = Vector2( 0, 0 )
 
-[node name="SpellLine" type="Line2D" parent="Spell/SpellRayCast"]
-points = PoolVector2Array( 0, 0, 0, 0 )
+[node name="SpellLine" type="Line2D" parent="SpellRayCast"]
 
-[node name="SpellTween" type="Tween" parent="Spell/SpellRayCast"]
+[node name="SpellTween" type="Tween" parent="SpellRayCast"]
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
@@ -52,5 +28,3 @@ current = true
 process_mode = 0
 smoothing_enabled = true
 smoothing_speed = 25.0
-
-[node name="Tween" type="Tween" parent="Camera2D"]
