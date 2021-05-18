@@ -1,11 +1,11 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Developers/Julian/Cop/Cop.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Developers/Lilou/Scenes/Player/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Developers/Lilou/Scenes/Player.tscn" type="PackedScene" id=2]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 827, 87, 0, 0, 0, 0, 964, 266, 0, 0, 0, 0, 654, 371, 0, 0, 0, 0, 584, 193, 0, 0, 0, 0, 827, 87 )
+"points": PoolVector2Array( 0, 0, 0, 0, 724, 43, 0, 0, 0, 0, 957, 172, 0, 0, 0, 0, 850, 565, 0, 0, 0, 0, 507, 484, 0, 0, 0, 0, 477, 213, 0, 0, 0, 0, 724, 43 )
 }
 
 [node name="CopTest" type="Node2D"]
@@ -13,12 +13,10 @@ _data = {
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 264, 311 )
 
-[node name="Node2D" type="Node2D" parent="."]
-
-[node name="Cop" parent="Node2D" instance=ExtResource( 1 )]
-position = Vector2( 797, 206 )
+[node name="Cop" parent="." instance=ExtResource( 1 )]
 patrol_path = NodePath("../Path2D")
-player_path = NodePath("../../Player")
+player_path = NodePath("../Player")
+speed = 4000
 
-[node name="Path2D" type="Path2D" parent="Node2D"]
+[node name="Path2D" type="Path2D" parent="."]
 curve = SubResource( 1 )
