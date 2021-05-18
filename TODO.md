@@ -14,7 +14,8 @@
   - [ ] Scrolling text telling the player what will happen next
 - [ ] Kids to roam around and turn into candy
 - [ ] Adults to shoo away player
-- [ ] Cops that attack the player
+- [x] Cops that attack the player
+- [ ] Ending Scene
 
 ## Art
 
