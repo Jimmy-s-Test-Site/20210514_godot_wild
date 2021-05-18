@@ -61,8 +61,6 @@ func animation_manager() -> void:
 			$Sprite.flip_h = true
 		1:
 			$Sprite.flip_h = false
-		0:
-			pass
 
 
 func _on_Area2D_body_entered(body: Node) -> void:
