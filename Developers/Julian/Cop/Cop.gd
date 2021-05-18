@@ -7,6 +7,7 @@ enum STATE {
 
 export(NodePath) var patrol_path
 export(NodePath) var player_path
+export(float) var min_patrol_point_distance = 2
 export(int) var speed = 8000
 
 onready var player : Node2D = self.get_node_or_null(self.player_path)
@@ -32,7 +33,7 @@ func _physics_process(delta: float) -> void:
 			
 			self.target = self.patrol_points[self.patrol_index]
 			
-			if self.position.distance_to(target) < 1:
+				if self.position.distance_to(self.target) < self.min_patrol_point_distance:
 				self.patrol_index = wrapi(self.patrol_index + 1, 0, self.patrol_points.size())
 				self.target = self.patrol_points[self.patrol_index]
 			
