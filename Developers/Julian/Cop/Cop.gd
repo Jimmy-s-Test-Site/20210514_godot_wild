@@ -30,26 +30,39 @@ func _physics_process(delta: float) -> void:
 			# if no path do nothing/stay still
 			if self.patrol_path != null:
 				## JUSTIN - below is path follow script
-			
-			self.target = self.patrol_points[self.patrol_index]
-			
+				
+				self.target = self.patrol_points[self.patrol_index]
+				
 				if self.position.distance_to(self.target) < self.min_patrol_point_distance:
 					self.patrol_index = (self.patrol_index + 1) % self.patrol_points.size()
-				self.target = self.patrol_points[self.patrol_index]
-			
+					self.target = self.patrol_points[self.patrol_index]
+				
 				self.move_and_slide(self.position.direction_to(self.target) * self.speed * delta)
-			self.movement = self.move_and_slide(self.movement)
 		
 		STATE.CHASE:
 			self.target = self.global_position.direction_to(self.player.global_position)
 			self.move_and_slide(self.target * self.speed * delta)
-
+	
 	self.attack_manager()
+	
+	self.animation_manager()
 
 
 func attack_manager() -> void:
 	if self.attacking and $AttackTimer.is_stopped():
 		self.player.take_damage()
+
+
+func animation_manager() -> void:
+	var horizontal_facing_direction = sign(self.target.x)
+	
+	match horizontal_facing_direction:
+		-1:
+			$Sprite.flip_h = true
+		1:
+			$Sprite.flip_h = false
+		0:
+			pass
 
 
 func _on_Area2D_body_entered(body: Node) -> void:
@@ -61,7 +74,6 @@ func _on_Area2D_body_entered(body: Node) -> void:
 
 
 func _on_Area2D_body_exited(body: Node) -> void:
-	self.target = Vector2.ZERO
 	self.state = STATE.ROAM
 
 
