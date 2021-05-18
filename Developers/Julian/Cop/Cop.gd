@@ -17,6 +17,7 @@ var attacking := false
 var target := Vector2.ZERO
 var movement := Vector2.ZERO
 
+var patrol_target := Vector2.ZERO
 var patrol_points
 var patrol_index = 0
 
@@ -35,15 +36,13 @@ func _physics_process(delta: float) -> void:
 			STATE.ROAM:
 				# if no path do nothing/stay still
 				if self.patrol_path != null:
-					## JUSTIN - below is path follow script
+					self.patrol_target = self.patrol_points[self.patrol_index]
 					
-					self.target = self.patrol_points[self.patrol_index]
-					
-					if self.position.distance_to(self.target) < self.min_patrol_point_distance:
+					if self.position.distance_to(self.patrol_target) < self.min_patrol_point_distance:
 						self.patrol_index = (self.patrol_index + 1) % self.patrol_points.size()
-						self.target = self.patrol_points[self.patrol_index]
+						self.patrol_target = self.patrol_points[self.patrol_index]
 					
-					self.move_and_slide(self.position.direction_to(self.target) * self.speed * delta)
+					self.move_and_slide(self.position.direction_to(self.patrol_target) * self.speed * delta)
 			
 			STATE.CHASE:
 				self.target = self.global_position.direction_to(self.player.global_position)
@@ -80,7 +79,7 @@ func animation_manager() -> void:
 
 
 func _on_Area2D_body_entered(body: Node) -> void:
-	if $InitTimer.is_stopped():
+	if $InitTimer.is_stopped() and body.name == "Player":
 		if self.player != null:
 			self.state = STATE.CHASE
 		else:
@@ -92,7 +91,7 @@ func _on_Area2D_body_exited(body: Node) -> void:
 
 
 func _on_AttackArea2D_body_entered(body: Node) -> void:
-	if $InitTimer.is_stopped():
+	if $InitTimer.is_stopped() and body.name == "Player":
 		self.attacking = true
 
 
