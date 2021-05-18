@@ -27,22 +27,29 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	match self.state:
 		STATE.ROAM:
-			if self.patrol_path == null:
-				return
+			# if no path do nothing/stay still
+			if self.patrol_path != null:
 				## JUSTIN - below is path follow script
 			
 			self.target = self.patrol_points[self.patrol_index]
 			
 				if self.position.distance_to(self.target) < self.min_patrol_point_distance:
-				self.patrol_index = wrapi(self.patrol_index + 1, 0, self.patrol_points.size())
+					self.patrol_index = (self.patrol_index + 1) % self.patrol_points.size()
 				self.target = self.patrol_points[self.patrol_index]
 			
-			self.movement = (self.target - self.position).normalized() * self.speed * delta
+				self.move_and_slide(self.position.direction_to(self.target) * self.speed * delta)
 			self.movement = self.move_and_slide(self.movement)
 		
 		STATE.CHASE:
 			self.target = self.global_position.direction_to(self.player.global_position)
 			self.move_and_slide(self.target * self.speed * delta)
+
+	self.attack_manager()
+
+
+func attack_manager() -> void:
+	if self.attacking and $AttackTimer.is_stopped():
+		self.player.take_damage()
 
 
 func _on_Area2D_body_entered(body: Node) -> void:
