@@ -5,7 +5,7 @@
 
 [sub_resource type="Curve2D" id=1]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, -2.20178, -1.60043, 0, 0, 0, 0, 8.28638, 360.99, 0, 0, 0, 0, 324.429, 371.478, 0, 0, 0, 0, 634.579, 365.485, 0, 0, 0, 0, 634.579, 25.3691 )
+"points": PoolVector2Array( 0, 0, 0, 0, -2.20178, -1.60043, 0, 0, 0, 0, -4.3692, 121.999, 0, 0, 0, 0, 8.28638, 360.99, 0, 0, 0, 0, 324.429, 371.478, 0, 0, 0, 0, 634.579, 365.485, 0, 0, 0, 0, 634.579, 25.3691 )
 }
 
 [sub_resource type="Curve2D" id=2]
@@ -16,19 +16,19 @@ _data = {
 [node name="ChildTest" type="Node2D"]
 
 [node name="Children" parent="." instance=ExtResource( 1 )]
-position = Vector2( 493.891, 98.7782 )
-patrol_path = NodePath("../Paths/GroceryTOClothing")
+position = Vector2( 499.23, 94.7736 )
+patrol_path = NodePath("../Paths/GroceryTOHome1")
 speed = 15000
 
 [node name="Paths" type="Node2D" parent="."]
 
 [node name="GroceryTOClothing" type="Path2D" parent="Paths"]
-position = Vector2( 51.408, 161.516 )
+position = Vector2( 53.408, 86.516 )
 scale = Vector2( 0.704431, 1 )
 curve = SubResource( 1 )
 
 [node name="GroceryTOHome1" type="Path2D" parent="Paths"]
-position = Vector2( 991.578, 177.534 )
+position = Vector2( 898.578, 99.534 )
 scale = Vector2( 0.833994, 1 )
 curve = SubResource( 2 )
 
