@@ -1,33 +1,33 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Developers/Justin/Children.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Developers/Justin/Child.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Developers/Justin/PixelDoor.png" type="Texture" id=2]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, -2.20178, -1.60043, 0, 0, 0, 0, -4.3692, 121.999, 0, 0, 0, 0, 8.28638, 360.99, 0, 0, 0, 0, 324.429, 371.478, 0, 0, 0, 0, 634.579, 365.485, 0, 0, 0, 0, 634.579, 25.3691 )
+"points": PoolVector2Array( 0, 0, 0, 0, -4.3692, 121.999, 0, 0, 0, 0, 8.28638, 360.99, 0, 0, 0, 0, 287.867, 216.057, 0, 0, 0, 0, 324.429, 371.478, 0, 0, 0, 0, 634.579, 365.485 )
 }
 
 [sub_resource type="Curve2D" id=2]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, -5.19843, -3.09875, 0, 0, 0, 0, 6.78802, 357.993, 0, 0, 0, 0, -474.169, 352, 0, 0, 0, 0, -475.667, -0.102142 )
+"points": PoolVector2Array( 0, 0, 0, 0, -5.19843, -3.09875, 0, 0, 0, 0, 6.78802, 357.993, 0, 0, 0, 0, -295.144, 355.602, 0, 0, 0, 0, -474.169, 352, 0, 0, 0, 0, -473.119, 189.466, 0, 0, 0, 0, -475.667, -0.102142, 0, 0, 0, 0, -5.19843, -3.09875 )
 }
 
 [node name="ChildTest" type="Node2D"]
 
 [node name="Children" parent="." instance=ExtResource( 1 )]
-position = Vector2( 499.23, 94.7736 )
-patrol_path = NodePath("../Paths/GroceryTOHome1")
+position = Vector2( 378.23, 88.7736 )
+patrol_path = NodePath("../Paths/Door1TODoor2")
 speed = 15000
 
 [node name="Paths" type="Node2D" parent="."]
 
-[node name="GroceryTOClothing" type="Path2D" parent="Paths"]
-position = Vector2( 53.408, 86.516 )
+[node name="Door1TODoor2" type="Path2D" parent="Paths"]
+position = Vector2( -83.592, -135.484 )
 scale = Vector2( 0.704431, 1 )
 curve = SubResource( 1 )
 
-[node name="GroceryTOHome1" type="Path2D" parent="Paths"]
+[node name="Door1TODoor3" type="Path2D" parent="Paths"]
 position = Vector2( 898.578, 99.534 )
 scale = Vector2( 0.833994, 1 )
 curve = SubResource( 2 )
