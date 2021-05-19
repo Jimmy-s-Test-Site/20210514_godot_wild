@@ -35,6 +35,13 @@ shape = SubResource( 3 )
 wait_time = 0.1
 one_shot = true
 autostart = true
+
+[node name="AttackTimer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+
+[node name="StunTimer" type="Timer" parent="."]
+one_shot = true
 [connection signal="body_entered" from="VisionArea2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="VisionArea2D" to="." method="_on_Area2D_body_exited"]
 [connection signal="body_entered" from="AttackArea2D" to="." method="_on_AttackArea2D_body_entered"]
