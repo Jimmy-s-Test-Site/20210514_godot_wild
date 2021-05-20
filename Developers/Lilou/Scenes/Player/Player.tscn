@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Developers/Lilou/Shadow.png" type="Texture" id=1]
 [ext_resource path="res://Developers/Lilou/Scenes/Player/Player.gd" type="Script" id=2]
@@ -61,14 +61,46 @@ hue_variation = 0.35
 hue_variation_random = 1.0
 
 [sub_resource type="CapsuleShape2D" id=11]
-radius = 25.0
+radius = 17.5
 height = 60.0
+
+[sub_resource type="Animation" id=12]
+resource_name = "anim_move_right"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 16, 17, 18, 17 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Spell:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 25, 12.5 ) ]
+}
 
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 2 )
 
 [node name="Spell" type="Node2D" parent="."]
-position = Vector2( 50, 0 )
+position = Vector2( 25, 12.5 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="RayCast" type="RayCast2D" parent="Spell"]
 enabled = true
@@ -117,6 +149,7 @@ texture = ExtResource( 1 )
 texture = ExtResource( 4 )
 hframes = 8
 vframes = 3
+frame = 17
 
 [node name="PlayerCollision" type="CollisionShape2D" parent="."]
 shape = SubResource( 11 )
@@ -128,3 +161,4 @@ smoothing_enabled = true
 smoothing_speed = 25.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/anim_move_right = SubResource( 12 )
