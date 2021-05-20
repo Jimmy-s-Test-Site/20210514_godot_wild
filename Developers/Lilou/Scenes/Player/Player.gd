@@ -18,15 +18,21 @@ var velocity = Vector2.ZERO;
 
 # 	abilities
 
-export (float) var cast_distance_max = 350.0;
-export (float) var cast_time = 0.2;
-onready var spell_raycast = $SpellRayCast;
-onready var spell_line = $SpellRayCast/SpellLine;
+var can_cast = true;
+var cast_hit = false;
+export (float) var spell_distance_max = 350.0;
+export (float) var spell_duration = 0.5;
+export (float) var spell_cooldown = 0.25;
+onready var spell_raycast = $Spell/RayCast;
+onready var spell_line = $Spell/Line;
+onready var spell_line_particles = $Spell/Line/LineParticles;
+onready var spell_tween = $Spell/Tween;
+onready var spell_start = $Spell/Start;
+onready var spell_start_particles = $Spell/Start/StartParticles;
+onready var spell_end = $Spell/End;
+onready var spell_end_particles = $Spell/End/EndParticles;
 
 # functions
-
-#func _ready():
-#	spell_raycast.cast_to = Vector2(cast_distance_max, 0);
 
 func _physics_process(delta: float) -> void:
 	
@@ -51,8 +57,11 @@ func _physics_process(delta: float) -> void:
 	
 	# abilities update
 	
-	if Input.is_action_just_pressed("cast_spell"):
+	if (Input.is_action_just_pressed("cast_spell") and can_cast):
 		cast_spell();
+	
+	if (cast_hit):
+		cast_beam();
 
 # 	state
 
@@ -64,27 +73,60 @@ func kill() -> void:
 
 # 	abilities
 
-func cast_spell():
-	spell_raycast.enabled = true;
+func cast_spell() -> void:
+	can_cast = false;
 	
-	var cast_line = get_global_mouse_position() - spell_raycast.global_position;
-	cast_line = cast_line.clamped(cast_distance_max);
+	cast_beam();
 	
-	spell_raycast.cast_to = cast_line;
+	appear();
 	
-	spell_line.clear_points();
-	spell_line.add_point(Vector2.ZERO);
+	yield(get_tree().create_timer(spell_duration), "timeout");
 	
-	if spell_raycast.is_colliding():
-		spell_line.add_point(spell_raycast.get_collision_point());
-	else:
-		spell_line.add_point(cast_line);
+	yield(get_tree().create_timer(spell_cooldown), "timeout");
 	
-	var hit = spell_raycast.get_collider();
+	disappear();
 	
-	if (spell_raycast.is_colliding() and hit.has_method("transform")):
-		hit.transform();
+	can_cast = true;
+
+func cast_beam() -> void:
+	var cast_target = get_local_mouse_position().clamped(spell_distance_max);
 	
-	spell_raycast.enabled = false;
+	spell_raycast.cast_to = cast_target;
 	
-# 	helpers
+	cast_hit = spell_raycast.is_colliding();
+	
+	spell_start_particles.global_rotation = spell_raycast.cast_to.angle();
+	
+	if (cast_hit):
+		cast_target = spell_raycast.get_collision_point();
+		spell_end_particles.global_rotation = spell_raycast.get_collision_normal().angle();
+	
+	#spell_line[1] = cast_target;
+	spell_end.global_position = to_global(cast_target);
+	spell_line_particles.position = cast_target * 0.5;
+	spell_line_particles.process_material.emission_box_extents.x = cast_target.length() * 0.5;
+	
+	if (spell_line.get_point_count() != 2):
+		spell_line.clear_points();
+		spell_line.add_point(Vector2.ZERO);
+		spell_line.add_point(Vector2.ZERO);
+	
+	spell_line.set_point_position(1, cast_target);
+
+func appear() -> void:
+	spell_line_particles.emitting = true;
+	spell_start_particles.emitting = true;
+	spell_end_particles.emitting = true;
+	
+	spell_tween.stop_all();
+	spell_tween.interpolate_method(spell_line, "width", 0, 10.0, 0.2);
+	spell_tween.start();
+
+func disappear() -> void:
+	spell_tween.stop_all();
+	spell_tween.interpolate_method(spell_line, "width", 10.0, 0, 0.1);
+	spell_tween.start();
+	
+	spell_line_particles.emitting = false;
+	spell_start_particles.emitting = false;
+	spell_end_particles.emitting = false;
