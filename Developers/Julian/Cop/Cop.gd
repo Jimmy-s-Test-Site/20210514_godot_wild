@@ -67,13 +67,16 @@ func receive_damage() -> void:
 
 
 func animation_manager() -> void:
-	var horizontal_facing_direction = sign(self.target.x)
-	
-	match horizontal_facing_direction:
-		-1:
-			$Sprite.flip_h = true
-		1:
-			$Sprite.flip_h = false
+	match self.state:
+		STATE.ROAM:
+			var facing_direction = self.position.direction_to(self.patrol_target)
+			$AnimationTree.set("parameters/Attack/blend_position", facing_direction)
+			$AnimationTree.set("parameters/Walk/blend_position", facing_direction)
+		
+		STATE.CHASE:
+			var facing_direction = self.target
+			$AnimationTree.set("parameters/Attack/blend_position", facing_direction)
+			$AnimationTree.set("parameters/Walk/blend_position", facing_direction)
 
 
 # ------
