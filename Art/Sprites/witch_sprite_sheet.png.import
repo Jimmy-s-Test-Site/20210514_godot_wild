@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/child_sprite_sheet.png-2aa86ac7ed467e7b2ee4804acbd5e675.stex"
+path="res://.import/witch_sprite_sheet.png-35f2565ec02450189224f751d8102362.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Sprites/child_sprite_sheet.png"
-dest_files=[ "res://.import/child_sprite_sheet.png-2aa86ac7ed467e7b2ee4804acbd5e675.stex" ]
+source_file="res://Art/Sprites/witch_sprite_sheet.png"
+dest_files=[ "res://.import/witch_sprite_sheet.png-35f2565ec02450189224f751d8102362.stex" ]
 
 [params]
 
