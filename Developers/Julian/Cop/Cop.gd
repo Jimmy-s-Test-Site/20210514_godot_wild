@@ -12,6 +12,7 @@ export(int) var speed = 8000
 
 onready var player : Node2D = self.get_node_or_null(self.player_path)
 onready var state : int = STATE.ROAM
+onready var animation_state : AnimationNodeStateMachinePlayback = $AnimationTree.get("parameters/playback")
 
 var attacking := false
 var target := Vector2.ZERO
@@ -77,6 +78,11 @@ func animation_manager() -> void:
 			var facing_direction = self.target
 			$AnimationTree.set("parameters/Attack/blend_position", facing_direction)
 			$AnimationTree.set("parameters/Walk/blend_position", facing_direction)
+	
+	if self.attacking:
+		self.animation_state.travel("Attack")
+	elif self.state == STATE.ROAM or self.state == STATE.CHASE:
+		self.animation_state.travel("Walk")
 
 
 # ------
