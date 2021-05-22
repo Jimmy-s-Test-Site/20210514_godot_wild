@@ -18,8 +18,33 @@ enum DESTINATIONS { # 8 of them estimated
 
 onready var remote_transfer = get_node(str(patrol_paths, "/Door1TODoor2/PathFollow2D"))
 
-
 func _ready() -> void:
+	Get_Random_Path()
+
+var move_direction = 0
+
+onready var _animation_player = $AnimationPlayer
+
+
+func _physics_process(delta):
+	MovementLoop(delta)
+
+func _process(delta):
+	AnimationLoop()
+	#get_unit_offset() getter
+
+func MovementLoop(delta):
+	if (remote_transfer.get_unit_offset() < 1):   	#if not at end of loop (1.00f)
+		var prepos = remote_transfer.get_global_position() 		#get previous global position
+		remote_transfer.set_offset(remote_transfer.get_offset() + move_speed + delta) 
+		var pos = remote_transfer.get_global_position() 		#get new global position
+		move_direction = (pos.angle_to_point(prepos) / PI)*180	#determine direction by previous->new global position
+	else: ##at end so respawn
+		Get_Random_Path() #get new path
+		remote_transfer.set_unit_offset(0) #reset offset to 0 so start at beginning of path
+			
+
+func Get_Random_Path():
 	var rng = RandomNumberGenerator.new()
 	rng.randomize()
 	var ChosenPath = rng.randi_range(0,1) #get a random integer between 0 and 1
@@ -34,23 +59,6 @@ func _ready() -> void:
 			print("Door1->Door3")###########
 
 
-var move_direction = 0
-
-onready var _animation_player = $AnimationPlayer
-
-
-func _physics_process(delta):
-	MovementLoop(delta)
-
-func _process(delta):
-	AnimationLoop()
-
-func MovementLoop(delta):
-	var prepos = remote_transfer.get_global_position()
-	remote_transfer.set_offset(remote_transfer.get_offset() + move_speed + delta)
-	var pos = remote_transfer.get_global_position()
-	move_direction = (pos.angle_to_point(prepos) / PI)*180
-	
 #_animation_player.play("WalkingDown") #start walking down animation
 func AnimationLoop():
 	var animation_direction = "Up" #down by default
