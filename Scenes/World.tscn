@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Developers/Lilou/Scenes/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Developers/Julian/Cop/Cop.tscn" type="PackedScene" id=2]
 [ext_resource path="res://icon.png" type="Texture" id=3]
 [ext_resource path="res://Art/Sprites/child_sprite_sheet.png" type="Texture" id=4]
+[ext_resource path="res://Developers/Justin/Child.tscn" type="PackedScene" id=5]
 
 [sub_resource type="Environment" id=1]
 background_mode = 4
@@ -33,19 +34,24 @@ _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, -7.1272, 3.56348, 0, 0, 0, 0, -17.184, 805.091, 0, 0, 0, 0, -1589.36, 783.991 )
 }
 
-[sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 512.665, 58.052 )
+[sub_resource type="Curve2D" id=5]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -2932.06, -3182.24, 0, 0, 0, 0, -2976.96, -2890.4, 0, 0, 0, 0, -2685.12, -2917.34 )
+}
 
 [sub_resource type="RectangleShape2D" id=6]
-extents = Vector2( 784.836, 49.377 )
+extents = Vector2( 512.665, 58.052 )
 
 [sub_resource type="RectangleShape2D" id=7]
-extents = Vector2( 845.776, 52.6392 )
+extents = Vector2( 784.836, 49.377 )
 
 [sub_resource type="RectangleShape2D" id=8]
-extents = Vector2( 1198.88, 39.3727 )
+extents = Vector2( 845.776, 52.6392 )
 
 [sub_resource type="RectangleShape2D" id=9]
+extents = Vector2( 1198.88, 39.3727 )
+
+[sub_resource type="RectangleShape2D" id=10]
 extents = Vector2( 325.968, 71.0987 )
 
 [node name="Main" type="Node2D"]
@@ -135,6 +141,24 @@ curve = SubResource( 4 )
 
 [node name="ChildrenGang" type="Node" parent="WorldEnvironment"]
 
+[node name="Paths" type="Node2D" parent="WorldEnvironment/ChildrenGang"]
+
+[node name="Dest1TODest2" type="Path2D" parent="WorldEnvironment/ChildrenGang/Paths"]
+curve = SubResource( 5 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="WorldEnvironment/ChildrenGang/Paths/Dest1TODest2"]
+position = Vector2( -2932.06, -3182.24 )
+rotate = false
+loop = false
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="WorldEnvironment/ChildrenGang/Paths/Dest1TODest2/PathFollow2D"]
+remote_path = NodePath("../../../../Child")
+update_rotation = false
+update_scale = false
+
+[node name="Child" parent="WorldEnvironment/ChildrenGang" instance=ExtResource( 5 )]
+position = Vector2( -2932.06, -3182.24 )
+
 [node name="Colliders" type="Node" parent="WorldEnvironment"]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="WorldEnvironment/Colliders"]
@@ -142,14 +166,14 @@ position = Vector2( 87.5802, 438.621 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="WorldEnvironment/Colliders/StaticBody2D"]
 position = Vector2( -493.554, 580.193 )
-shape = SubResource( 5 )
+shape = SubResource( 6 )
 
 [node name="StaticBody2D4" type="StaticBody2D" parent="WorldEnvironment/Colliders"]
 position = Vector2( 72.4781, -490.151 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="WorldEnvironment/Colliders/StaticBody2D4"]
 position = Vector2( 425.853, 216.706 )
-shape = SubResource( 5 )
+shape = SubResource( 6 )
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="WorldEnvironment/Colliders"]
 position = Vector2( 1193.8, -240.968 )
@@ -157,7 +181,7 @@ rotation = 1.56437
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="WorldEnvironment/Colliders/StaticBody2D3"]
 position = Vector2( 425.853, 216.706 )
-shape = SubResource( 5 )
+shape = SubResource( 6 )
 
 [node name="StaticBody2D9" type="StaticBody2D" parent="WorldEnvironment/Colliders/StaticBody2D3"]
 position = Vector2( -53.4192, -559.839 )
@@ -165,7 +189,7 @@ rotation = 2.82254
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="WorldEnvironment/Colliders/StaticBody2D3/StaticBody2D9"]
 position = Vector2( 425.853, 216.706 )
-shape = SubResource( 5 )
+shape = SubResource( 6 )
 
 [node name="StaticBody2D7" type="StaticBody2D" parent="WorldEnvironment/Colliders"]
 position = Vector2( 1019.18, 439.678 )
@@ -173,7 +197,7 @@ rotation = -0.0123833
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="WorldEnvironment/Colliders/StaticBody2D7"]
 position = Vector2( 425.853, 216.706 )
-shape = SubResource( 5 )
+shape = SubResource( 6 )
 
 [node name="StaticBody2D8" type="StaticBody2D" parent="WorldEnvironment/Colliders"]
 position = Vector2( 1756.85, 610.731 )
@@ -181,7 +205,7 @@ rotation = -1.57363
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="WorldEnvironment/Colliders/StaticBody2D8"]
 position = Vector2( 425.853, 216.706 )
-shape = SubResource( 5 )
+shape = SubResource( 6 )
 
 [node name="StaticBody2D10" type="StaticBody2D" parent="WorldEnvironment/Colliders"]
 position = Vector2( 1756.85, 610.731 )
@@ -190,7 +214,7 @@ rotation = -1.57363
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="WorldEnvironment/Colliders/StaticBody2D10"]
 position = Vector2( 1917.53, -2374.01 )
 rotation = -1.58918
-shape = SubResource( 6 )
+shape = SubResource( 7 )
 
 [node name="StaticBody2D11" type="StaticBody2D" parent="WorldEnvironment/Colliders"]
 position = Vector2( -2960.08, -4082.07 )
@@ -199,7 +223,7 @@ rotation = 1.58722
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="WorldEnvironment/Colliders/StaticBody2D11"]
 position = Vector2( 1917.53, -2374.01 )
 rotation = -1.58918
-shape = SubResource( 6 )
+shape = SubResource( 7 )
 
 [node name="StaticBody2D12" type="StaticBody2D" parent="WorldEnvironment/Colliders"]
 position = Vector2( -2960.08, -4082.07 )
@@ -208,7 +232,7 @@ rotation = 1.58722
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="WorldEnvironment/Colliders/StaticBody2D12"]
 position = Vector2( 1875.27, -4946.58 )
 rotation = -1.58918
-shape = SubResource( 6 )
+shape = SubResource( 7 )
 
 [node name="StaticBody2D13" type="StaticBody2D" parent="WorldEnvironment/Colliders"]
 position = Vector2( -2862.73, -5584.29 )
@@ -217,7 +241,7 @@ rotation = 1.58722
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="WorldEnvironment/Colliders/StaticBody2D13"]
 position = Vector2( 1890.31, -2295.16 )
 rotation = -1.58918
-shape = SubResource( 6 )
+shape = SubResource( 7 )
 
 [node name="StaticBody2D16" type="StaticBody2D" parent="WorldEnvironment/Colliders"]
 position = Vector2( -311.2, -5584.29 )
@@ -226,7 +250,7 @@ rotation = 1.58722
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="WorldEnvironment/Colliders/StaticBody2D16"]
 position = Vector2( 1890.31, -2295.16 )
 rotation = -1.58918
-shape = SubResource( 6 )
+shape = SubResource( 7 )
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="WorldEnvironment/Colliders"]
 position = Vector2( 84.027, 417.041 )
@@ -234,7 +258,7 @@ position = Vector2( 84.027, 417.041 )
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="WorldEnvironment/Colliders/StaticBody2D2"]
 position = Vector2( -769.449, -131.015 )
 rotation = 0.495383
-shape = SubResource( 7 )
+shape = SubResource( 8 )
 
 [node name="StaticBody2D6" type="StaticBody2D" parent="WorldEnvironment/Colliders"]
 position = Vector2( 61.3738, -1244.18 )
@@ -243,21 +267,21 @@ rotation = -0.68704
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="WorldEnvironment/Colliders/StaticBody2D6"]
 position = Vector2( -670.495, -257.255 )
 rotation = 0.326438
-shape = SubResource( 7 )
+shape = SubResource( 8 )
 
 [node name="StaticBody2D14" type="StaticBody2D" parent="WorldEnvironment/Colliders"]
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="WorldEnvironment/Colliders/StaticBody2D14"]
 position = Vector2( -1352.03, -2480.98 )
 rotation = 1.59398
-shape = SubResource( 8 )
+shape = SubResource( 9 )
 
 [node name="StaticBody2D9" type="StaticBody2D" parent="WorldEnvironment/Colliders"]
 position = Vector2( 1677.03, -2431.09 )
 rotation = 1.59398
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="WorldEnvironment/Colliders/StaticBody2D9"]
-shape = SubResource( 8 )
+shape = SubResource( 9 )
 
 [node name="StaticBody2D5" type="StaticBody2D" parent="WorldEnvironment/Colliders"]
 position = Vector2( -1328.01, -368.262 )
@@ -265,4 +289,4 @@ position = Vector2( -1328.01, -368.262 )
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="WorldEnvironment/Colliders/StaticBody2D5"]
 position = Vector2( -59.6558, -52.9619 )
 rotation = 1.59398
-shape = SubResource( 9 )
+shape = SubResource( 10 )
