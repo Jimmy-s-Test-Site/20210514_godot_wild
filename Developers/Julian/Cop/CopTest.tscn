@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Developers/Julian/Cop/Cop.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Developers/Lilou/Scenes/Player/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Developers/Julian/Player/Player.tscn" type="PackedScene" id=2]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -19,7 +19,7 @@ position = Vector2( 156, 268 )
 [node name="Node2D" type="Node2D" parent="."]
 
 [node name="Cop" parent="Node2D" instance=ExtResource( 1 )]
-position = Vector2( 623, 238 )
+position = Vector2( 316, 27 )
 patrol_path = NodePath("../Path2D")
 player_path = NodePath("../../Player")
 

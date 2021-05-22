@@ -33,11 +33,12 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if self.is_stunned:
+	if not self.is_stunned:
 		match self.state:
 			STATE.ROAM:
 				# if no path do nothing/stay still
 				if self.patrol_path != null:
+					print("yo")
 					self.patrol_target = self.patrol_points[self.patrol_index]
 					
 					if self.position.distance_to(self.patrol_target) < self.min_patrol_point_distance:
