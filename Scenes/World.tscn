@@ -143,21 +143,38 @@ curve = SubResource( 4 )
 
 [node name="Paths" type="Node2D" parent="WorldEnvironment/ChildrenGang"]
 
-[node name="Dest1TODest2" type="Path2D" parent="WorldEnvironment/ChildrenGang/Paths"]
+[node name="Door1TODoor2" type="Path2D" parent="WorldEnvironment/ChildrenGang/Paths"]
+position = Vector2( 3677.47, 2982.45 )
+scale = Vector2( 1.55322, 1.12678 )
 curve = SubResource( 5 )
 
-[node name="PathFollow2D" type="PathFollow2D" parent="WorldEnvironment/ChildrenGang/Paths/Dest1TODest2"]
+[node name="PathFollow2D" type="PathFollow2D" parent="WorldEnvironment/ChildrenGang/Paths/Door1TODoor2"]
 position = Vector2( -2932.06, -3182.24 )
 rotate = false
 loop = false
 
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="WorldEnvironment/ChildrenGang/Paths/Dest1TODest2/PathFollow2D"]
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="WorldEnvironment/ChildrenGang/Paths/Door1TODoor2/PathFollow2D"]
+remote_path = NodePath("../../../../Child")
+update_rotation = false
+update_scale = false
+
+[node name="Door1TODoor3" type="Path2D" parent="WorldEnvironment/ChildrenGang/Paths"]
+position = Vector2( 3168, 2504 )
+curve = SubResource( 5 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="WorldEnvironment/ChildrenGang/Paths/Door1TODoor3"]
+position = Vector2( -2932.06, -3182.24 )
+rotate = false
+loop = false
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="WorldEnvironment/ChildrenGang/Paths/Door1TODoor3/PathFollow2D"]
 remote_path = NodePath("../../../../Child")
 update_rotation = false
 update_scale = false
 
 [node name="Child" parent="WorldEnvironment/ChildrenGang" instance=ExtResource( 5 )]
-position = Vector2( -2932.06, -3182.24 )
+position = Vector2( 235.94, -678.24 )
+patrol_paths = NodePath("../Paths")
 
 [node name="Colliders" type="Node" parent="WorldEnvironment"]
 
