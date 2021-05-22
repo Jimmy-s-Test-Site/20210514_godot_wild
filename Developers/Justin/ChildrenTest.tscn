@@ -5,7 +5,7 @@
 
 [sub_resource type="Curve2D" id=1]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, -4.3692, 121.999, 0, 0, 0, 0, 8.28638, 360.99, 0, 0, 0, 0, 287.867, 216.057, 0, 0, 0, 0, 324.429, 371.478, 0, 0, 0, 0, 634.579, 365.485 )
+"points": PoolVector2Array( 0, 0, 0, 0, -218.055, 24.5322, 0, 0, 0, 0, 53.6815, 202.43, 0, 0, 0, 0, 8.28638, 360.99, 0, 0, 0, 0, 287.867, 216.057, 0, 0, 0, 0, 324.429, 371.478, 0, 0, 0, 0, 634.579, 365.485 )
 }
 
 [sub_resource type="Curve2D" id=2]
@@ -15,22 +15,39 @@ _data = {
 
 [node name="ChildTest" type="Node2D"]
 
-[node name="Children" parent="." instance=ExtResource( 1 )]
-position = Vector2( 378.23, 88.7736 )
-patrol_path = NodePath("../Paths/Door1TODoor2")
-speed = 15000
-
 [node name="Paths" type="Node2D" parent="."]
 
 [node name="Door1TODoor2" type="Path2D" parent="Paths"]
-position = Vector2( -83.592, -135.484 )
-scale = Vector2( 0.704431, 1 )
+position = Vector2( 186.759, 71.168 )
+scale = Vector2( 0.30332, 0.416795 )
 curve = SubResource( 1 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Paths/Door1TODoor2"]
+position = Vector2( -4.3692, 121.999 )
+rotate = false
+cubic_interp = false
+loop = false
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Paths/Door1TODoor2/PathFollow2D"]
+remote_path = NodePath("../../../../Children/Child")
+update_rotation = false
+update_scale = false
 
 [node name="Door1TODoor3" type="Path2D" parent="Paths"]
 position = Vector2( 898.578, 99.534 )
 scale = Vector2( 0.833994, 1 )
 curve = SubResource( 2 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Paths/Door1TODoor3"]
+position = Vector2( -5.19843, -3.09875 )
+rotation = 1.53761
+
+[node name="RemoteTransform2D2" type="RemoteTransform2D" parent="Paths/Door1TODoor3/PathFollow2D"]
+rotation = -1.53761
+scale = Vector2( 0.363696, 0.416795 )
+remote_path = NodePath("../../../../Children/Child")
+update_rotation = false
+update_scale = false
 
 [node name="Destinations" type="Node2D" parent="."]
 
@@ -51,3 +68,9 @@ position = Vector2( 526.71, 84.0404 )
 scale = Vector2( 0.201404, 0.0965676 )
 texture = ExtResource( 2 )
 offset = Vector2( -154.892, 201.225 )
+
+[node name="Children" type="Node2D" parent="."]
+
+[node name="Child" parent="Children" instance=ExtResource( 1 )]
+position = Vector2( 185.434, 122.017 )
+scale = Vector2( 0.704431, 1 )
