@@ -1,11 +1,11 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Developers/Julian/EndingScene/bell_alpha_distribution.shader" type="Shader" id=1]
+[ext_resource path="res://Art/galvanic.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Developers/Julian/EndingScene/EndingScene.gd" type="Script" id=2]
 
-[sub_resource type="ShaderMaterial" id=1]
-shader = ExtResource( 1 )
-shader_param/bell_width = 4.0
+[sub_resource type="DynamicFont" id=1]
+size = 64
+font_data = ExtResource( 1 )
 
 [node name="EndingScene" type="Control"]
 anchor_right = 1.0
@@ -26,23 +26,16 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="Control"]
-material = SubResource( 1 )
-anchor_top = 2.3
-anchor_right = 1.0
-anchor_bottom = 2.3
-margin_left = 0.199997
-margin_top = -1164.0
-margin_right = 0.200012
-margin_bottom = -521.0
+anchor_right = 4.0
+anchor_bottom = 4.0
+margin_top = 200.0
+margin_right = 1.0
+margin_bottom = -336.2
+rect_scale = Vector2( 0.25, 0.25 )
+custom_fonts/font = SubResource( 1 )
 text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus accumsan arcu vel congue venenatis. Proin eget mattis nulla. Integer facilisis leo diam, rutrum rutrum nibh hendrerit nec. Phasellus at purus sit amet nulla iaculis condimentum et vel massa. Integer in tincidunt orci. Mauris maximus sed mauris non pretium. Fusce lacinia porta est, vel porta ex faucibus et. Aenean eget elit lorem. Aliquam at semper enim, eget egestas velit. Nulla facilisi. Nulla lacinia facilisis magna vitae eleifend.
 
-Vestibulum ligula sem, vulputate ac magna vel, dignissim ornare metus. Mauris quis justo massa. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse eleifend egestas felis, sit amet fringilla lectus lobortis id. In id ornare ipsum. Praesent enim magna, commodo id ipsum eget, interdum dictum tortor. Vestibulum malesuada feugiat justo, eu lobortis tellus aliquet id. Quisque sed tempor mauris. Mauris eu enim at tellus aliquet ullamcorper. Ut malesuada mi eu urna dignissim laoreet. Maecenas euismod arcu at elit vulputate commodo in in urna.
-
-Integer consectetur tincidunt enim. Proin velit felis, fermentum in cursus in, vulputate a neque. Phasellus non aliquam eros. Aenean non dui lacus. Nunc feugiat semper lorem a vulputate. Nulla vel purus volutpat nisl pretium bibendum. Cras a augue ut orci molestie tincidunt. Nunc quis faucibus tellus. Donec eu tortor vitae turpis scelerisque euismod et sed metus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In fermentum odio nec risus ullamcorper gravida. Ut lobortis, leo eget convallis mattis, quam nunc finibus magna, a vulputate mi lacus vitae nulla. Aenean ac vulputate massa.
-
-Pellentesque facilisis rutrum ante, quis elementum tellus bibendum ut. Aliquam erat volutpat. Vestibulum commodo, nisl at rhoncus vulputate, est urna gravida felis, eu eleifend nibh urna vel elit. Maecenas commodo et velit vel dictum. Nullam blandit ac enim ac maximus. Sed aliquet lectus non nunc tempor vestibulum. Proin cursus dignissim neque in tempus. Aliquam vulputate hendrerit sapien, tristique aliquet elit aliquet commodo. Aliquam eget consectetur tortor. Mauris justo orci, blandit ac gravida ac, auctor vitae mi. Praesent feugiat tincidunt arcu, sed elementum quam sodales a.
-
-Integer maximus, nisi nec condimentum varius, ex ligula vehicula dolor, sed condimentum magna velit a felis. Duis lectus libero, scelerisque et pharetra nec, ornare eget ante. Pellentesque dignissim rutrum venenatis. Morbi sodales fermentum purus, vitae sodales turpis porttitor eget. Vivamus ultricies ante sapien, sit amet laoreet purus iaculis ultrices. Vestibulum at lacinia ex. Nulla arcu nulla, finibus in arcu elementum, pellentesque sodales nibh. Ut scelerisque ipsum vitae est ullamcorper rutrum eget id metus. Aliquam velit justo, aliquet sit amet ornare at, pretium ut nunc."
+Vestibulum ligula sem, vulputate ac magna vel, dignissim ornare metus. Mauris quis justo massa. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse eleifend egestas felis, sit amet fringilla lectus lobortis id. In id ornare ipsum. Praesent enim magna, commodo id ipsum eget, interdum dictum tortor. Vestibulum malesuada feugiat justo, eu lobortis tellus aliquet id. Quisque sed tempor mauris. Mauris eu enim at tellus aliquet ullamcorper. Ut malesuada mi eu urna dignissim laoreet. Maecenas euismod arcu at elit vulputate commodo in in urna."
 align = 1
 autowrap = true
 __meta__ = {
