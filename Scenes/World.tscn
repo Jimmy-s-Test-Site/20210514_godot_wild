@@ -1,9 +1,9 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://Developers/Lilou/Scenes/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Developers/Julian/Cop/Cop.tscn" type="PackedScene" id=2]
 [ext_resource path="res://icon.png" type="Texture" id=3]
-[ext_resource path="res://Art/Sprites/child_sprite_sheet.png" type="Texture" id=4]
+[ext_resource path="res://Developers/Justin/Child.tscn" type="PackedScene" id=5]
 
 [sub_resource type="Environment" id=1]
 background_mode = 4
@@ -33,19 +33,105 @@ _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, -7.1272, 3.56348, 0, 0, 0, 0, -17.184, 805.091, 0, 0, 0, 0, -1589.36, 783.991 )
 }
 
-[sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 512.665, 58.052 )
+[sub_resource type="Curve2D" id=11]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -1246.83, 34.145, 0, 0, 0, 0, -245.906, 28.427, 0, 0, 0, 0, -747.7, -1191.36, 0, 0, 0, 0, -1246.83, 34.145 )
+}
+
+[sub_resource type="Curve2D" id=23]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 2057.31, -975.283, 0, 0, 0, 0, 3110.61, -1882.43, 0, 0, 0, 0, 3115.65, -3671.51 )
+}
+
+[sub_resource type="Curve2D" id=24]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -3349.19, -4349.62, 0, 0, 0, 0, -1348.05, -4333.28 )
+}
+
+[sub_resource type="Curve2D" id=25]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 3427.17, -5366.72, 0, 0, 0, 0, 2350.96, -5402.36, 0, 0, 0, 0, 3455.68, -4497.2, 0, 0, 0, 0, 2358.09, -4547.09, 0, 0, 0, 0, 3427.17, -5366.72 )
+}
+
+[sub_resource type="Curve2D" id=5]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -2929.79, -5697.43, 0, 0, 0, 0, -2934.94, -4834.8 )
+}
+
+[sub_resource type="Curve2D" id=12]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 593.997, -414.811, 0, 0, 0, 0, -28.1233, -1290.36, 0, 0, 0, 0, -65.2686, -418.374, 0, 0, 0, 0, 593.997, -414.811 )
+}
+
+[sub_resource type="Curve2D" id=13]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 1566.86, -1298.58, 0, 0, 0, 0, 1581.11, -382.738, 0, 0, 0, 0, 921.847, -396.993, 0, 0, 0, 0, 1566.86, -1298.58 )
+}
+
+[sub_resource type="Curve2D" id=14]
+_data = {
+"points": PoolVector2Array( -164.816, 124.453, 164.816, -124.453, -1142.6, -5591.18, -63.9081, -164.816, 63.9081, 164.816, -294.979, -5608, 77.3625, -100.908, -77.3625, 100.908, -298.343, -4323.11, 104.271, 134.543, -104.271, -134.543, -1152.69, -4313.02, -87.4532, 174.906, 87.4532, -174.906, -1142.6, -5591.18 )
+}
+
+[sub_resource type="Curve2D" id=15]
+_data = {
+"points": PoolVector2Array( 76.1953, -260.334, -76.1953, 260.334, -2904.3, -4747.97, -146.041, 165.09, 146.041, -165.09, -1621.68, -4760.67, 215.887, 76.1953, -215.887, -76.1953, -1774.07, -5528.98, 6.34961, -126.992, -6.34961, 126.992, -2904.3, -4747.97 )
+}
+
+[sub_resource type="Curve2D" id=26]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 5442.67, 3839.51, 0, 0, 0, 0, 4502.93, 3699.82, 0, 0, 0, 0, 4845.81, 4150.64, 0, 0, 0, 0, 4782.31, 3388.69, 0, 0, 0, 0, 5442.67, 3839.51 )
+}
+
+[sub_resource type="Curve2D" id=27]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 120.286, -5698.81, 0, 0, 0, 0, 1298.24, -5695.03, 0, 0, 0, 0, 1343.55, -4558.61, 0, 0, 0, 0, 120.286, -4569.93, 0, 0, 0, 0, 127.837, -5695.03, 0, 0, 0, 0, 120.286, -5698.81 )
+}
+
+[sub_resource type="Curve2D" id=28]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 2865.54, -5857.58, 0, 0, 0, 0, 2865.54, -4181.02 )
+}
+
+[sub_resource type="Curve2D" id=29]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 229.254, -8.94946, 0, 0, 0, 0, 13.7417, -141.4, 0, 0, 0, 0, -1.9729, 78.6025, 0, 0, 0, 0, 229.254, -8.94946 )
+}
 
 [sub_resource type="RectangleShape2D" id=6]
-extents = Vector2( 784.836, 49.377 )
+extents = Vector2( 536, 58.052 )
+
+[sub_resource type="RectangleShape2D" id=16]
+extents = Vector2( 975.881, 43.5898 )
+
+[sub_resource type="RectangleShape2D" id=17]
+extents = Vector2( 1438.69, 81.7031 )
+
+[sub_resource type="RectangleShape2D" id=18]
+extents = Vector2( 225.582, 480.368 )
+
+[sub_resource type="RectangleShape2D" id=19]
+extents = Vector2( 653.64, 50.5117 )
+
+[sub_resource type="RectangleShape2D" id=20]
+extents = Vector2( 771.287, 53.6409 )
 
 [sub_resource type="RectangleShape2D" id=7]
-extents = Vector2( 845.776, 52.6392 )
+extents = Vector2( 784.836, 49.377 )
+
+[sub_resource type="RectangleShape2D" id=21]
+extents = Vector2( 2669.45, 35.3945 )
 
 [sub_resource type="RectangleShape2D" id=8]
-extents = Vector2( 1198.88, 39.3727 )
+extents = Vector2( 845.776, 52.6392 )
 
 [sub_resource type="RectangleShape2D" id=9]
+extents = Vector2( 1198.88, 39.3727 )
+
+[sub_resource type="RectangleShape2D" id=22]
+extents = Vector2( 2412.47, 43.2876 )
+
+[sub_resource type="RectangleShape2D" id=10]
 extents = Vector2( 325.968, 71.0987 )
 
 [node name="Main" type="Node2D"]
@@ -64,43 +150,22 @@ scale = Vector2( 8.99343, 8.99343 )
 position = Vector2( 1.46933, -4.61787 )
 texture = ExtResource( 3 )
 
-[node name="Sprite" type="Sprite" parent="WorldEnvironment/Placeholder"]
-position = Vector2( -23.2499, -73.725 )
-scale = Vector2( 0.111192, 0.111192 )
-texture = ExtResource( 4 )
+[node name="CandyShop" type="Sprite" parent="WorldEnvironment/Placeholder"]
+position = Vector2( -10.5259, -172.551 )
+scale = Vector2( 0.604325, 0.583499 )
+texture = ExtResource( 3 )
 
-[node name="Sprite2" type="Sprite" parent="WorldEnvironment/Placeholder"]
-position = Vector2( -151.237, -161.691 )
-scale = Vector2( 0.111192, 0.111192 )
-texture = ExtResource( 4 )
+[node name="CandyShop2" type="Sprite" parent="WorldEnvironment/Placeholder"]
+position = Vector2( -36.5155, -593.05 )
+scale = Vector2( 0.604325, 0.583499 )
+texture = ExtResource( 3 )
 
-[node name="Sprite3" type="Sprite" parent="WorldEnvironment/Placeholder"]
-position = Vector2( -214.636, -295.028 )
-scale = Vector2( 0.0389045, 0.0335944 )
-texture = ExtResource( 4 )
-
-[node name="Sprite4" type="Sprite" parent="WorldEnvironment/Placeholder"]
-position = Vector2( 29.8469, -293.839 )
-scale = Vector2( 0.0389045, 0.0335944 )
-texture = ExtResource( 4 )
-
-[node name="Sprite5" type="Sprite" parent="WorldEnvironment/Placeholder"]
-position = Vector2( -111.216, -405.183 )
-scale = Vector2( 0.0389045, 0.0335944 )
-texture = ExtResource( 4 )
+[node name="CandyShop3" type="Sprite" parent="WorldEnvironment/Placeholder"]
+position = Vector2( -247.098, -455.105 )
+scale = Vector2( 0.604325, 0.583499 )
+texture = ExtResource( 3 )
 
 [node name="CopsGang" type="Node" parent="WorldEnvironment"]
-
-[node name="Cop" parent="WorldEnvironment/CopsGang" instance=ExtResource( 2 )]
-position = Vector2( -287.293, -828.266 )
-rotation = 0.25732
-patrol_path = NodePath("../Path2D")
-player_path = NodePath("../../../Player")
-
-[node name="Path2D" type="Path2D" parent="WorldEnvironment/CopsGang"]
-position = Vector2( -619.669, -715.208 )
-rotation = 0.0301144
-curve = SubResource( 2 )
 
 [node name="Cop2" parent="WorldEnvironment/CopsGang" instance=ExtResource( 2 )]
 position = Vector2( -75.6267, -1002.14 )
@@ -133,7 +198,215 @@ position = Vector2( 697.067, -3565.14 )
 scale = Vector2( 1.00676, 0.929214 )
 curve = SubResource( 4 )
 
+[node name="Cop5" parent="WorldEnvironment/CopsGang" instance=ExtResource( 2 )]
+position = Vector2( -1641.48, -2385.62 )
+rotation = -0.00626264
+patrol_path = NodePath("../Path2D5")
+player_path = NodePath("../../../Player")
+
+[node name="Path2D5" type="Path2D" parent="WorldEnvironment/CopsGang"]
+position = Vector2( -1641.48, -2385.62 )
+rotation = -0.00626264
+curve = SubResource( 11 )
+
+[node name="Cop6" parent="WorldEnvironment/CopsGang" instance=ExtResource( 2 )]
+position = Vector2( 2038.99, -982.656 )
+patrol_path = NodePath("../Path2D6")
+player_path = NodePath("../../../Player")
+
+[node name="Path2D6" type="Path2D" parent="WorldEnvironment/CopsGang"]
+curve = SubResource( 23 )
+
+[node name="Cop7" parent="WorldEnvironment/CopsGang" instance=ExtResource( 2 )]
+position = Vector2( -3349.19, -4197.06 )
+
+[node name="Path2D7" type="Path2D" parent="WorldEnvironment/CopsGang"]
+curve = SubResource( 24 )
+
+[node name="Cop8" parent="WorldEnvironment/CopsGang" instance=ExtResource( 2 )]
+position = Vector2( 3455.68, -4967.6 )
+patrol_path = NodePath("../Path2D8")
+player_path = NodePath("../../../Player")
+
+[node name="Path2D8" type="Path2D" parent="WorldEnvironment/CopsGang"]
+curve = SubResource( 25 )
+
 [node name="ChildrenGang" type="Node" parent="WorldEnvironment"]
+
+[node name="Paths" type="Node2D" parent="WorldEnvironment/ChildrenGang"]
+
+[node name="Door1TODoor2" type="Path2D" parent="WorldEnvironment/ChildrenGang/Paths"]
+position = Vector2( 3677.47, 2982.45 )
+scale = Vector2( 1.55322, 1.12678 )
+curve = SubResource( 5 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="WorldEnvironment/ChildrenGang/Paths/Door1TODoor2"]
+position = Vector2( -2929.79, -5697.43 )
+rotate = false
+loop = false
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="WorldEnvironment/ChildrenGang/Paths/Door1TODoor2/PathFollow2D"]
+remote_path = NodePath("../../../../Child")
+update_rotation = false
+update_scale = false
+
+[node name="Door1TODoor3" type="Path2D" parent="WorldEnvironment/ChildrenGang/Paths"]
+position = Vector2( 3168, 2504 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="WorldEnvironment/ChildrenGang/Paths/Door1TODoor3"]
+position = Vector2( -1865.14, -5905.3 )
+rotate = false
+loop = false
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="WorldEnvironment/ChildrenGang/Paths/Door1TODoor3/PathFollow2D"]
+remote_path = NodePath("../../../../Child")
+update_rotation = false
+update_scale = false
+
+[node name="Path2" type="Path2D" parent="WorldEnvironment/ChildrenGang/Paths"]
+position = Vector2( -3205.37, -2526.38 )
+curve = SubResource( 12 )
+
+[node name="PathFollow2D2" type="PathFollow2D" parent="WorldEnvironment/ChildrenGang/Paths/Path2"]
+position = Vector2( 593.997, -414.811 )
+rotate = false
+loop = false
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="WorldEnvironment/ChildrenGang/Paths/Path2/PathFollow2D2"]
+remote_path = NodePath("../../../../Child")
+update_rotation = false
+update_scale = false
+
+[node name="Path3" type="Path2D" parent="WorldEnvironment/ChildrenGang/Paths"]
+position = Vector2( -3205.37, -2526.38 )
+curve = SubResource( 13 )
+
+[node name="PathFollow2D3" type="PathFollow2D" parent="WorldEnvironment/ChildrenGang/Paths/Path3"]
+position = Vector2( 1566.86, -1298.58 )
+rotate = false
+loop = false
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="WorldEnvironment/ChildrenGang/Paths/Path3/PathFollow2D3"]
+remote_path = NodePath("../../../../Child")
+update_rotation = false
+update_scale = false
+
+[node name="Path4" type="Path2D" parent="WorldEnvironment/ChildrenGang/Paths"]
+position = Vector2( 16.8179, -16.8179 )
+curve = SubResource( 14 )
+
+[node name="PathFollow2D4" type="PathFollow2D" parent="WorldEnvironment/ChildrenGang/Paths/Path4"]
+position = Vector2( -1142.6, -5591.18 )
+rotate = false
+loop = false
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="WorldEnvironment/ChildrenGang/Paths/Path4/PathFollow2D4"]
+remote_path = NodePath("../../../../Child")
+update_rotation = false
+update_scale = false
+
+[node name="Path5" type="Path2D" parent="WorldEnvironment/ChildrenGang/Paths"]
+curve = SubResource( 15 )
+
+[node name="PathFollow2D5" type="PathFollow2D" parent="WorldEnvironment/ChildrenGang/Paths/Path5"]
+position = Vector2( -2904.3, -4747.97 )
+rotate = false
+loop = false
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="WorldEnvironment/ChildrenGang/Paths/Path5/PathFollow2D5"]
+remote_path = NodePath("../../../../Child")
+update_rotation = false
+update_scale = false
+
+[node name="Path6" type="Path2D" parent="WorldEnvironment/ChildrenGang/Paths"]
+position = Vector2( -2063.91, -5266.64 )
+curve = SubResource( 26 )
+
+[node name="PathFollow2D6" type="PathFollow2D" parent="WorldEnvironment/ChildrenGang/Paths/Path6"]
+position = Vector2( 5442.67, 3839.51 )
+rotate = false
+loop = false
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="WorldEnvironment/ChildrenGang/Paths/Path6/PathFollow2D6"]
+remote_path = NodePath("../../../../Child")
+update_rotation = false
+update_scale = false
+
+[node name="Path7" type="Path2D" parent="WorldEnvironment/ChildrenGang/Paths"]
+curve = SubResource( 27 )
+
+[node name="PathFollow2D7" type="PathFollow2D" parent="WorldEnvironment/ChildrenGang/Paths/Path7"]
+position = Vector2( 120.286, -5698.81 )
+rotate = false
+loop = false
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="WorldEnvironment/ChildrenGang/Paths/Path7/PathFollow2D7"]
+remote_path = NodePath("../../../../Child")
+update_rotation = false
+update_scale = false
+
+[node name="Path8" type="Path2D" parent="WorldEnvironment/ChildrenGang/Paths"]
+curve = SubResource( 28 )
+
+[node name="PathFollow2D8" type="PathFollow2D" parent="WorldEnvironment/ChildrenGang/Paths/Path8"]
+position = Vector2( 2865.54, -5857.58 )
+rotate = false
+loop = false
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="WorldEnvironment/ChildrenGang/Paths/Path8/PathFollow2D8"]
+remote_path = NodePath("../../../../Child")
+update_rotation = false
+update_scale = false
+
+[node name="Path9" type="Path2D" parent="WorldEnvironment/ChildrenGang/Paths"]
+position = Vector2( -1196.69, -331.84 )
+curve = SubResource( 29 )
+
+[node name="PathFollow2D9" type="PathFollow2D" parent="WorldEnvironment/ChildrenGang/Paths/Path9"]
+position = Vector2( 4062.23, -5525.74 )
+rotate = false
+loop = false
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="WorldEnvironment/ChildrenGang/Paths/Path9/PathFollow2D9"]
+remote_path = NodePath("../../../../Child")
+update_rotation = false
+update_scale = false
+
+[node name="Child" parent="WorldEnvironment/ChildrenGang" instance=ExtResource( 5 )]
+position = Vector2( 2865.54, -5857.58 )
+patrol_paths = NodePath("../Paths")
+
+[node name="Child2" parent="WorldEnvironment/ChildrenGang" instance=ExtResource( 5 )]
+position = Vector2( -1663.17, -2557.78 )
+patrol_paths = NodePath("../Paths")
+
+[node name="Child3" parent="WorldEnvironment/ChildrenGang" instance=ExtResource( 5 )]
+position = Vector2( -3205.37, -2526.38 )
+patrol_paths = NodePath("../Paths")
+
+[node name="Child4" parent="WorldEnvironment/ChildrenGang" instance=ExtResource( 5 )]
+position = Vector2( -1213.87, -4917.71 )
+patrol_paths = NodePath("../Paths")
+
+[node name="Child5" parent="WorldEnvironment/ChildrenGang" instance=ExtResource( 5 )]
+position = Vector2( -2063.91, -5266.64 )
+patrol_paths = NodePath("../Paths")
+
+[node name="Child6" parent="WorldEnvironment/ChildrenGang" instance=ExtResource( 5 )]
+position = Vector2( 3321.61, -1471.58 )
+patrol_paths = NodePath("../Paths")
+
+[node name="Child7" parent="WorldEnvironment/ChildrenGang" instance=ExtResource( 5 )]
+position = Vector2( 2015.99, -4197.86 )
+patrol_paths = NodePath("../Paths")
+
+[node name="Child8" parent="WorldEnvironment/ChildrenGang" instance=ExtResource( 5 )]
+position = Vector2( 626.185, -5701.7 )
+patrol_paths = NodePath("../Paths")
+
+[node name="Child9" parent="WorldEnvironment/ChildrenGang" instance=ExtResource( 5 )]
+position = Vector2( -1196.69, -331.84 )
+patrol_paths = NodePath("../Paths")
 
 [node name="Colliders" type="Node" parent="WorldEnvironment"]
 
@@ -141,15 +414,15 @@ curve = SubResource( 4 )
 position = Vector2( 87.5802, 438.621 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="WorldEnvironment/Colliders/StaticBody2D"]
-position = Vector2( -493.554, 580.193 )
-shape = SubResource( 5 )
+position = Vector2( 462.193, 243.813 )
+shape = SubResource( 6 )
 
 [node name="StaticBody2D4" type="StaticBody2D" parent="WorldEnvironment/Colliders"]
 position = Vector2( 72.4781, -490.151 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="WorldEnvironment/Colliders/StaticBody2D4"]
 position = Vector2( 425.853, 216.706 )
-shape = SubResource( 5 )
+shape = SubResource( 6 )
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="WorldEnvironment/Colliders"]
 position = Vector2( 1193.8, -240.968 )
@@ -157,15 +430,36 @@ rotation = 1.56437
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="WorldEnvironment/Colliders/StaticBody2D3"]
 position = Vector2( 425.853, 216.706 )
-shape = SubResource( 5 )
+shape = SubResource( 6 )
 
 [node name="StaticBody2D9" type="StaticBody2D" parent="WorldEnvironment/Colliders/StaticBody2D3"]
 position = Vector2( -53.4192, -559.839 )
 rotation = 2.82254
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="WorldEnvironment/Colliders/StaticBody2D3/StaticBody2D9"]
-position = Vector2( 425.853, 216.706 )
-shape = SubResource( 5 )
+position = Vector2( 158.8, 1092.17 )
+rotation = 1.32832
+shape = SubResource( 16 )
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="WorldEnvironment/Colliders/StaticBody2D3/StaticBody2D9"]
+position = Vector2( 6176.55, -2545.99 )
+rotation = 1.32832
+shape = SubResource( 17 )
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="WorldEnvironment/Colliders/StaticBody2D3/StaticBody2D9"]
+position = Vector2( 5214.48, -830.714 )
+rotation = 1.89001
+shape = SubResource( 18 )
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="WorldEnvironment/Colliders/StaticBody2D3/StaticBody2D9"]
+position = Vector2( 4330.09, 1789.86 )
+rotation = 1.89001
+shape = SubResource( 18 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="WorldEnvironment/Colliders/StaticBody2D3/StaticBody2D9"]
+position = Vector2( 1210.81, 794.013 )
+rotation = 1.15022
+shape = SubResource( 19 )
 
 [node name="StaticBody2D7" type="StaticBody2D" parent="WorldEnvironment/Colliders"]
 position = Vector2( 1019.18, 439.678 )
@@ -173,7 +467,7 @@ rotation = -0.0123833
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="WorldEnvironment/Colliders/StaticBody2D7"]
 position = Vector2( 425.853, 216.706 )
-shape = SubResource( 5 )
+shape = SubResource( 6 )
 
 [node name="StaticBody2D8" type="StaticBody2D" parent="WorldEnvironment/Colliders"]
 position = Vector2( 1756.85, 610.731 )
@@ -181,7 +475,12 @@ rotation = -1.57363
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="WorldEnvironment/Colliders/StaticBody2D8"]
 position = Vector2( 425.853, 216.706 )
-shape = SubResource( 5 )
+shape = SubResource( 6 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="WorldEnvironment/Colliders/StaticBody2D8"]
+position = Vector2( 3518.53, 864.553 )
+rotation = 0.0795081
+shape = SubResource( 20 )
 
 [node name="StaticBody2D10" type="StaticBody2D" parent="WorldEnvironment/Colliders"]
 position = Vector2( 1756.85, 610.731 )
@@ -190,7 +489,7 @@ rotation = -1.57363
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="WorldEnvironment/Colliders/StaticBody2D10"]
 position = Vector2( 1917.53, -2374.01 )
 rotation = -1.58918
-shape = SubResource( 6 )
+shape = SubResource( 7 )
 
 [node name="StaticBody2D11" type="StaticBody2D" parent="WorldEnvironment/Colliders"]
 position = Vector2( -2960.08, -4082.07 )
@@ -199,16 +498,16 @@ rotation = 1.58722
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="WorldEnvironment/Colliders/StaticBody2D11"]
 position = Vector2( 1917.53, -2374.01 )
 rotation = -1.58918
-shape = SubResource( 6 )
+shape = SubResource( 7 )
 
 [node name="StaticBody2D12" type="StaticBody2D" parent="WorldEnvironment/Colliders"]
 position = Vector2( -2960.08, -4082.07 )
 rotation = 1.58722
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="WorldEnvironment/Colliders/StaticBody2D12"]
-position = Vector2( 1875.27, -4946.58 )
+position = Vector2( 1877.81, -4791.88 )
 rotation = -1.58918
-shape = SubResource( 6 )
+shape = SubResource( 7 )
 
 [node name="StaticBody2D13" type="StaticBody2D" parent="WorldEnvironment/Colliders"]
 position = Vector2( -2862.73, -5584.29 )
@@ -217,7 +516,16 @@ rotation = 1.58722
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="WorldEnvironment/Colliders/StaticBody2D13"]
 position = Vector2( 1890.31, -2295.16 )
 rotation = -1.58918
-shape = SubResource( 6 )
+shape = SubResource( 7 )
+
+[node name="StaticBody2D17" type="StaticBody2D" parent="WorldEnvironment/Colliders"]
+position = Vector2( -2862.73, -5584.29 )
+rotation = 1.58722
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="WorldEnvironment/Colliders/StaticBody2D17"]
+position = Vector2( -503.107, -4032.34 )
+rotation = -1.58328
+shape = SubResource( 21 )
 
 [node name="StaticBody2D16" type="StaticBody2D" parent="WorldEnvironment/Colliders"]
 position = Vector2( -311.2, -5584.29 )
@@ -226,7 +534,7 @@ rotation = 1.58722
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="WorldEnvironment/Colliders/StaticBody2D16"]
 position = Vector2( 1890.31, -2295.16 )
 rotation = -1.58918
-shape = SubResource( 6 )
+shape = SubResource( 7 )
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="WorldEnvironment/Colliders"]
 position = Vector2( 84.027, 417.041 )
@@ -234,7 +542,7 @@ position = Vector2( 84.027, 417.041 )
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="WorldEnvironment/Colliders/StaticBody2D2"]
 position = Vector2( -769.449, -131.015 )
 rotation = 0.495383
-shape = SubResource( 7 )
+shape = SubResource( 8 )
 
 [node name="StaticBody2D6" type="StaticBody2D" parent="WorldEnvironment/Colliders"]
 position = Vector2( 61.3738, -1244.18 )
@@ -243,21 +551,44 @@ rotation = -0.68704
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="WorldEnvironment/Colliders/StaticBody2D6"]
 position = Vector2( -670.495, -257.255 )
 rotation = 0.326438
-shape = SubResource( 7 )
+shape = SubResource( 8 )
 
 [node name="StaticBody2D14" type="StaticBody2D" parent="WorldEnvironment/Colliders"]
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="WorldEnvironment/Colliders/StaticBody2D14"]
 position = Vector2( -1352.03, -2480.98 )
 rotation = 1.59398
-shape = SubResource( 8 )
+shape = SubResource( 9 )
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="WorldEnvironment/Colliders/StaticBody2D14"]
+position = Vector2( -2472.87, -2089.88 )
+rotation = -0.00795043
+shape = SubResource( 9 )
+
+[node name="StaticBody2D15" type="StaticBody2D" parent="WorldEnvironment/Colliders"]
+position = Vector2( 4621.57, 262.36 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="WorldEnvironment/Colliders/StaticBody2D15"]
+position = Vector2( -1056.03, -2750.07 )
+rotation = 1.58348
+shape = SubResource( 9 )
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="WorldEnvironment/Colliders/StaticBody2D15"]
+position = Vector2( -1029.13, -5111.3 )
+rotation = 1.58348
+shape = SubResource( 9 )
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="WorldEnvironment/Colliders/StaticBody2D15"]
+position = Vector2( -8226.58, -4737.55 )
+rotation = 1.58348
+shape = SubResource( 22 )
 
 [node name="StaticBody2D9" type="StaticBody2D" parent="WorldEnvironment/Colliders"]
 position = Vector2( 1677.03, -2431.09 )
 rotation = 1.59398
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="WorldEnvironment/Colliders/StaticBody2D9"]
-shape = SubResource( 8 )
+shape = SubResource( 9 )
 
 [node name="StaticBody2D5" type="StaticBody2D" parent="WorldEnvironment/Colliders"]
 position = Vector2( -1328.01, -368.262 )
@@ -265,4 +596,4 @@ position = Vector2( -1328.01, -368.262 )
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="WorldEnvironment/Colliders/StaticBody2D5"]
 position = Vector2( -59.6558, -52.9619 )
 rotation = 1.59398
-shape = SubResource( 9 )
+shape = SubResource( 10 )
