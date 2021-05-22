@@ -1,11 +1,11 @@
 [gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Developers/Lilou/Shadow.png" type="Texture" id=1]
-[ext_resource path="res://Developers/Lilou/Scenes/Player/Player.gd" type="Script" id=2]
+[ext_resource path="res://Developers/Julian/Player/Player.gd" type="Script" id=2]
 [ext_resource path="res://Developers/Lilou/Circle.png" type="Texture" id=3]
 [ext_resource path="res://Developers/Lilou/witch_sprite_sheet.png" type="Texture" id=4]
 
-[sub_resource type="CanvasItemMaterial" id=5]
+[sub_resource type="CanvasItemMaterial" id=1]
 blend_mode = 1
 
 [sub_resource type="Gradient" id=2]
@@ -14,13 +14,13 @@ colors = PoolColorArray( 0.843137, 0.372549, 0.784314, 1, 0, 0, 0, 0 )
 [sub_resource type="GradientTexture" id=3]
 gradient = SubResource( 2 )
 
-[sub_resource type="Curve" id=9]
+[sub_resource type="Curve" id=4]
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.730263, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=10]
-curve = SubResource( 9 )
+[sub_resource type="CurveTexture" id=5]
+curve = SubResource( 4 )
 
-[sub_resource type="ParticlesMaterial" id=8]
+[sub_resource type="ParticlesMaterial" id=6]
 emission_shape = 2
 emission_box_extents = Vector3( 1, 1, 1 )
 flag_disable_z = true
@@ -31,19 +31,7 @@ orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 tangential_accel = 100.0
 scale = 0.25
-scale_curve = SubResource( 10 )
-color_ramp = SubResource( 3 )
-hue_variation = 0.35
-hue_variation_random = 1.0
-
-[sub_resource type="ParticlesMaterial" id=6]
-flag_disable_z = true
-spread = 180.0
-gravity = Vector3( 0, 0, 0 )
-initial_velocity = 100.0
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-scale = 0.5
+scale_curve = SubResource( 5 )
 color_ramp = SubResource( 3 )
 hue_variation = 0.35
 hue_variation_random = 1.0
@@ -60,11 +48,23 @@ color_ramp = SubResource( 3 )
 hue_variation = 0.35
 hue_variation_random = 1.0
 
-[sub_resource type="CapsuleShape2D" id=11]
+[sub_resource type="ParticlesMaterial" id=8]
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 100.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 0.5
+color_ramp = SubResource( 3 )
+hue_variation = 0.35
+hue_variation_random = 1.0
+
+[sub_resource type="CapsuleShape2D" id=9]
 radius = 17.5
 height = 60.0
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=10]
 resource_name = "anim_move_right"
 length = 0.4
 loop = true
@@ -112,12 +112,12 @@ default_color = Color( 0.75, 1.75, 1.75, 1 )
 end_cap_mode = 2
 
 [node name="LineParticles" type="Particles2D" parent="Spell/Line"]
-material = SubResource( 5 )
+material = SubResource( 1 )
 emitting = false
 amount = 16
 lifetime = 0.12
 local_coords = false
-process_material = SubResource( 8 )
+process_material = SubResource( 6 )
 texture = ExtResource( 3 )
 
 [node name="Tween" type="Tween" parent="Spell"]
@@ -125,21 +125,21 @@ texture = ExtResource( 3 )
 [node name="Start" type="Position2D" parent="Spell"]
 
 [node name="StartParticles" type="Particles2D" parent="Spell/Start"]
-material = SubResource( 5 )
+material = SubResource( 1 )
 emitting = false
 amount = 16
 lifetime = 0.12
-process_material = SubResource( 6 )
+process_material = SubResource( 7 )
 texture = ExtResource( 3 )
 
 [node name="End" type="Position2D" parent="Spell"]
 
 [node name="EndParticles" type="Particles2D" parent="Spell/End"]
-material = SubResource( 5 )
+material = SubResource( 1 )
 amount = 16
 lifetime = 0.12
 fract_delta = false
-process_material = SubResource( 7 )
+process_material = SubResource( 8 )
 texture = ExtResource( 3 )
 
 [node name="ShadowSprite" type="Sprite" parent="."]
@@ -152,7 +152,7 @@ vframes = 3
 frame = 17
 
 [node name="PlayerCollision" type="CollisionShape2D" parent="."]
-shape = SubResource( 11 )
+shape = SubResource( 9 )
 
 [node name="PlayerCamera" type="Camera2D" parent="."]
 current = true
@@ -161,4 +161,4 @@ smoothing_enabled = true
 smoothing_speed = 25.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/anim_move_right = SubResource( 12 )
+anims/anim_move_right = SubResource( 10 )
