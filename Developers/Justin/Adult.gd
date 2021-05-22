@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 export(NodePath) var patrol_paths
-export(int) var move_speed = 2
+export(int) var move_speed = 4
 
 enum DESTINATIONS { # 8 of them estimated
 	CLOTHING,
@@ -20,14 +20,14 @@ enum STATE {
 }
 #onready var remote_transfer = get_node("../Paths/Door1TODoor2/PathFollow2D")
 
-onready var remote_transfer = get_node(str(patrol_paths, "/Door1TODoor2/PathFollow2D")) #str() concates the string names
+onready var remote_transfer = get_node(str(patrol_paths, "/Door1TODoor2/PathFollow2D"))
 
 func _ready() -> void:
 	Get_Random_Path()
 
 var move_direction = 0
 
-onready var _animation_player = $AnimationPlayer
+onready var _animation_player = $AdultAnimationPlayer
 
 func _physics_process(delta):
 	MovementLoop(delta)
@@ -50,30 +50,16 @@ func MovementLoop(delta):
 func Get_Random_Path():
 	var rng = RandomNumberGenerator.new()
 	rng.randomize()
-	var ChosenPath = rng.randi_range(0,9) #get a random integer between 0 and 9
+	var ChosenPath = rng.randi_range(0,1) #get a random integer between 0 and 1
 
-	print("Child's ChosenPath is: ", ChosenPath)######
+	print("Adult's ChosenPath is: ", ChosenPath)######
 	match ChosenPath:
 		0:
 			remote_transfer = get_node (str(patrol_paths, "/Door1TODoor2/PathFollow2D"))
+			print("Door1->Door2")#########
 		1:
 			remote_transfer = get_node (str(patrol_paths, "/Door1TODoor3/PathFollow2D"))
-		2:
-			remote_transfer = get_node (str(patrol_paths, "/Path2/PathFollow2D"))
-		3:
-			remote_transfer = get_node (str(patrol_paths, "/Path3/PathFollow2D"))
-		4:
-			remote_transfer = get_node (str(patrol_paths, "/Path4/PathFollow2D"))
-		5:
-			remote_transfer = get_node (str(patrol_paths, "/Path5/PathFollow2D"))
-		6:
-			remote_transfer = get_node (str(patrol_paths, "/Path6/PathFollow2D"))
-		7:
-			remote_transfer = get_node (str(patrol_paths, "/Path7/PathFollow2D"))
-		8:
-			remote_transfer = get_node (str(patrol_paths, "/Path8/PathFollow2D"))
-		9:
-			remote_transfer = get_node (str(patrol_paths, "/Path9/PathFollow2D"))
+			print("Door1->Door3")###########
 
 
 #_animation_player.play("WalkingDown") #start walking down animation
@@ -88,7 +74,7 @@ func AnimationLoop():
 	elif move_direction <= -165 or move_direction >= 165:
 		animation_direction = "Left"
 	var animation = "Walking" + animation_direction
-	get_node("AnimationPlayer").play(animation)
+	get_node("AdultAnimationPlayer").play(animation)
 		
 	#IN RADIANS
 
