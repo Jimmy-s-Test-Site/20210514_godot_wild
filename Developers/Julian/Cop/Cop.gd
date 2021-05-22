@@ -15,6 +15,7 @@ onready var state : int = STATE.ROAM
 onready var animation_state : AnimationNodeStateMachinePlayback = $AnimationTree.get("parameters/playback")
 
 var attacking := false
+var is_stunned := false
 var target := Vector2.ZERO
 var movement := Vector2.ZERO
 
@@ -32,7 +33,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if $StunTimer.is_stopped():
+	if self.is_stunned:
 		match self.state:
 			STATE.ROAM:
 				# if no path do nothing/stay still
@@ -65,21 +66,23 @@ func attack_manager() -> void:
 
 func receive_damage() -> void:
 	$StunTimer.start()
+	self.is_stunned = true
 
 
 func animation_manager() -> void:
-	match self.state:
-		STATE.ROAM:
-			var facing_direction = self.position.direction_to(self.patrol_target)
-			$AnimationTree.set("parameters/Attack/blend_position", facing_direction)
-			$AnimationTree.set("parameters/Walk/blend_position", facing_direction)
-		
-		STATE.CHASE:
-			var facing_direction = self.target
-			$AnimationTree.set("parameters/Attack/blend_position", facing_direction)
-			$AnimationTree.set("parameters/Walk/blend_position", facing_direction)
+	var facing_direction : Vector2
 	
-	if self.attacking:
+	if self.state == STATE.ROAM:
+		facing_direction = self.position.direction_to(self.patrol_target)
+	elif self.state == STATE.CHASE:
+		facing_direction = self.target
+	
+	$AnimationTree.set("parameters/Attack/blend_position", facing_direction)
+	$AnimationTree.set("parameters/Walk/blend_position", facing_direction)
+	
+	if self.is_stunned:
+		self.animation_state.travel("Transform")
+	elif self.attacking:
 		self.animation_state.travel("Attack")
 	elif self.state == STATE.ROAM or self.state == STATE.CHASE:
 		self.animation_state.travel("Walk")
@@ -109,3 +112,6 @@ func _on_AttackArea2D_body_entered(body: Node) -> void:
 func _on_AttackArea2D_body_exited(body: Node) -> void:
 	self.attacking = false
 
+
+func _on_StunTimer_timeout() -> void:
+	self.is_stunned = false

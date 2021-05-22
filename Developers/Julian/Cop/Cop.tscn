@@ -7,10 +7,10 @@
 extents = Vector2( 20, 50 )
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 252.008
+radius = 239.002
 
 [sub_resource type="CircleShape2D" id=3]
-radius = 108.227
+radius = 50.01
 
 [sub_resource type="Animation" id=4]
 resource_name = "AttackDown"
@@ -78,7 +78,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=8]
 resource_name = "Transform"
-length = 0.7
+length = 0.6
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -86,10 +86,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 0, 1, 2, 3, 4, 5, 6 ]
+"values": [ 0, 1, 2, 3, 4, 5 ]
 }
 
 [sub_resource type="Animation" id=9]
@@ -233,21 +233,18 @@ script = ExtResource( 2 )
 texture = ExtResource( 1 )
 vframes = 3
 hframes = 8
-frame = 10
+frame = 8
 region_rect = Rect2( 0, 0, 304, 300 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource( 1 )
 
 [node name="VisionArea2D" type="Area2D" parent="."]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="VisionArea2D"]
 shape = SubResource( 2 )
 
 [node name="AttackArea2D" type="Area2D" parent="."]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea2D"]
 shape = SubResource( 3 )
@@ -286,3 +283,4 @@ parameters/Walk/blend_position = Vector2( 0.0113269, 0.830508 )
 [connection signal="body_exited" from="VisionArea2D" to="." method="_on_Area2D_body_exited"]
 [connection signal="body_entered" from="AttackArea2D" to="." method="_on_AttackArea2D_body_entered"]
 [connection signal="body_exited" from="AttackArea2D" to="." method="_on_AttackArea2D_body_exited"]
+[connection signal="timeout" from="StunTimer" to="." method="_on_StunTimer_timeout"]
