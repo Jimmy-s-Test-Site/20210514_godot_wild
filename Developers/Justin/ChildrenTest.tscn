@@ -23,7 +23,7 @@ scale = Vector2( 0.30332, 0.416795 )
 curve = SubResource( 1 )
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Paths/Door1TODoor2"]
-position = Vector2( -4.3692, 121.999 )
+position = Vector2( -218.055, 24.5322 )
 rotate = false
 cubic_interp = false
 loop = false
@@ -72,5 +72,6 @@ offset = Vector2( -154.892, 201.225 )
 [node name="Children" type="Node2D" parent="."]
 
 [node name="Child" parent="Children" instance=ExtResource( 1 )]
-position = Vector2( 185.434, 122.017 )
+position = Vector2( 120.619, 81.3929 )
 scale = Vector2( 0.704431, 1 )
+patrol_paths = NodePath("../../Paths")

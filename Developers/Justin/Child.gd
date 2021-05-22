@@ -1,6 +1,8 @@
 extends KinematicBody2D
 
-export(NodePath) var patrol_path
+export(NodePath) var patrol_paths
+export(int) var move_speed = 2
+
 enum DESTINATIONS { # 8 of them estimated
 	CLOTHING,
 	GROCERY,
@@ -12,23 +14,26 @@ enum DESTINATIONS { # 8 of them estimated
 	BATHROOM
 }
 
-onready var remote_transfer = get_node("../../Paths/Door1TODoor2/PathFollow2D")
+#onready var remote_transfer = get_node("../Paths/Door1TODoor2/PathFollow2D")
+
+onready var remote_transfer = get_node(str(patrol_paths, "/Door1TODoor2/PathFollow2D"))
+
 
 func _ready() -> void:
 	var rng = RandomNumberGenerator.new()
 	rng.randomize()
 	var ChosenPath = rng.randi_range(0,1) #get a random integer between 0 and 1
 
-	print("ChosenPath is: ", ChosenPath)######
+	print("Child's ChosenPath is: ", ChosenPath)######
 	match ChosenPath:
 		0:
-			remote_transfer = get_node("../../Paths/Door1TODoor2/PathFollow2D")
+			remote_transfer = get_node (str(patrol_paths, "/Door1TODoor2/PathFollow2D"))
 			print("Door1->Door2")#########
 		1:
-			remote_transfer = get_node("../../Paths/Door1TODoor3/PathFollow2D")
+			remote_transfer = get_node (str(patrol_paths, "/Door1TODoor3/PathFollow2D"))
 			print("Door1->Door3")###########
 
-export(int) var speed = 2
+
 var move_direction = 0
 
 onready var _animation_player = $AnimationPlayer
@@ -42,14 +47,13 @@ func _process(delta):
 
 func MovementLoop(delta):
 	var prepos = remote_transfer.get_global_position()
-	remote_transfer.set_offset(remote_transfer.get_offset() + speed + delta)
+	remote_transfer.set_offset(remote_transfer.get_offset() + move_speed + delta)
 	var pos = remote_transfer.get_global_position()
 	move_direction = (pos.angle_to_point(prepos) / PI)*180
 	
 #_animation_player.play("WalkingDown") #start walking down animation
 func AnimationLoop():
 	var animation_direction = "Up" #down by default
-	print("move_direction: ",move_direction)
 	if move_direction <= 60 and move_direction >= -60:
 		animation_direction = "Right"
 	elif move_direction <= -165 and move_direction >= -60:
