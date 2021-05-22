@@ -38,7 +38,6 @@ func _physics_process(delta: float) -> void:
 			STATE.ROAM:
 				# if no path do nothing/stay still
 				if self.patrol_path != null:
-					print("yo")
 					self.patrol_target = self.patrol_points[self.patrol_index]
 					
 					if self.position.distance_to(self.patrol_target) < self.min_patrol_point_distance:
