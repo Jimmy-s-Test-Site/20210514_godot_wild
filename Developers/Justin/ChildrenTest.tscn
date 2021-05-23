@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Developers/Justin/Child.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Developers/Justin/PixelDoor.png" type="Texture" id=2]
@@ -9,14 +9,9 @@ _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, -218.055, 24.5322, 0, 0, 0, 0, 53.6815, 202.43, 0, 0, 0, 0, 8.28638, 360.99, 0, 0, 0, 0, 287.867, 216.057, 0, 0, 0, 0, 324.429, 371.478, 0, 0, 0, 0, 634.579, 365.485 )
 }
 
-[sub_resource type="Curve2D" id=2]
+[sub_resource type="Curve2D" id=11]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 6.78802, 357.993, 0, 0, 0, 0, -295.144, 355.602, 0, 0, 0, 0, -474.169, 352, 0, 0, 0, 0, -473.119, 189.466, 0, 0, 0, 0, -475.667, -0.102142, 0, 0, 0, 0, -3.21582, 34.4617 )
-}
-
-[sub_resource type="Curve2D" id=3]
-_data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 121.294, 947.884, 0, 0, 0, 0, 235.069, 925.33, 0, 0, 0, 0, 260.927, 1038.1, 0, 0, 0, 0, 147.152, 1101.25, 0, 0, 0, 0, 344.79, 1192.81 )
+"points": PoolVector2Array( 0, 0, 0, 0, 537.01, 130.569, 0, 0, 0, 0, 532.253, 445.709, 0, 0, 0, 0, 872.366, 436.195, 0, 0, 0, 0, 850.961, 138.894, 0, 0, 0, 0, 537.01, 130.569 )
 }
 
 [sub_resource type="Curve2D" id=4]
@@ -44,12 +39,12 @@ _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 210.072, 873.775, 0, 0, 0, 0, 302.072, 877.775, 0, 0, 0, 0, 234.072, 1013.77 )
 }
 
-[sub_resource type="Curve2D" id=10]
+[sub_resource type="Curve2D" id=9]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 222.072, 1145.77, 0, 0, 0, 0, 118.072, 1161.77, 0, 0, 0, 0, 118.072, 1225.77, 0, 0, 0, 0, 194.072, 1257.77, 0, 0, 0, 0, 238.072, 1161.77, 0, 0, 0, 0, 218.072, 1353.77 )
 }
 
-[sub_resource type="Curve2D" id=11]
+[sub_resource type="Curve2D" id=10]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 809.909, 234.577, 0, 0, 0, 0, 819.101, 337.815, 0, 0, 0, 0, 757.583, 334.986, 0, 0, 0, 0, 748.39, 235.284, 0, 0, 0, 0, 809.909, 234.577 )
 }
@@ -58,47 +53,31 @@ _data = {
 
 [node name="TargetPaths" type="Node2D" parent="."]
 
-[node name="Door1TODoor2" type="Path2D" parent="TargetPaths"]
+[node name="Path1" type="Path2D" parent="TargetPaths"]
 position = Vector2( 186.759, 71.168 )
 scale = Vector2( 0.30332, 0.416795 )
 curve = SubResource( 1 )
 
-[node name="PathFollow2D" type="PathFollow2D" parent="TargetPaths/Door1TODoor2"]
+[node name="PathFollow2D" type="PathFollow2D" parent="TargetPaths/Path1"]
 position = Vector2( -218.055, 24.5322 )
 rotate = false
 cubic_interp = false
 loop = false
 
-[node name="RemoteTransformAdult" type="RemoteTransform2D" parent="TargetPaths/Door1TODoor2/PathFollow2D"]
-remote_path = NodePath("../../../../Adults/Adult")
-update_rotation = false
-update_scale = false
-
-[node name="Door1TODoor3" type="Path2D" parent="TargetPaths"]
-position = Vector2( 898.578, 99.534 )
-scale = Vector2( 0.833994, 1 )
-curve = SubResource( 2 )
-
-[node name="PathFollow2D" type="PathFollow2D" parent="TargetPaths/Door1TODoor3"]
-position = Vector2( 6.78802, 357.993 )
-rotation = -3.13368
-
-[node name="RemoteTransformAdult" type="RemoteTransform2D" parent="TargetPaths/Door1TODoor3/PathFollow2D"]
-scale = Vector2( 1e-05, 1e-05 )
+[node name="RemoteTransformAdult" type="RemoteTransform2D" parent="TargetPaths/Path1/PathFollow2D"]
 remote_path = NodePath("../../../../Adults/Adult")
 update_rotation = false
 update_scale = false
 
 [node name="Path2" type="Path2D" parent="TargetPaths"]
-position = Vector2( -2.58179, -30.6048 )
-scale = Vector2( 0.187308, 0.236923 )
-curve = SubResource( 3 )
+curve = SubResource( 11 )
 
 [node name="PathFollow2D" type="PathFollow2D" parent="TargetPaths/Path2"]
-position = Vector2( 121.294, 947.884 )
-rotation = -0.195716
+position = Vector2( 6.78802, 357.993 )
+rotation = -3.13368
 
 [node name="RemoteTransformAdult" type="RemoteTransform2D" parent="TargetPaths/Path2/PathFollow2D"]
+scale = Vector2( 1e-05, 1e-05 )
 remote_path = NodePath("../../../../Adults/Adult")
 update_rotation = false
 update_scale = false
@@ -183,7 +162,7 @@ update_scale = false
 [node name="Path9" type="Path2D" parent="TargetPaths"]
 position = Vector2( 80, -148 )
 scale = Vector2( 0.5, 0.5 )
-curve = SubResource( 10 )
+curve = SubResource( 9 )
 
 [node name="PathFollow2D" type="PathFollow2D" parent="TargetPaths/Path9"]
 position = Vector2( 222.072, 1145.77 )
@@ -196,7 +175,7 @@ update_rotation = false
 update_scale = false
 
 [node name="Path8" type="Path2D" parent="TargetPaths"]
-curve = SubResource( 11 )
+curve = SubResource( 10 )
 
 [node name="Destinations" type="Node2D" parent="."]
 
@@ -221,16 +200,15 @@ offset = Vector2( -154.892, 201.225 )
 [node name="Children" type="Node2D" parent="."]
 
 [node name="Child" parent="Children" instance=ExtResource( 1 )]
-position = Vector2( 801.31, 233.085 )
+position = Vector2( 775.363, 331.789 )
 collision_layer = 2
 target_paths = NodePath("../../TargetPaths")
 loop_path = NodePath("../../TargetPaths/Path8")
-move_speed = 5000
-min_patrol_point_distance = 5
 
 [node name="Adults" type="Node2D" parent="."]
 
 [node name="Adult" parent="Adults" instance=ExtResource( 3 )]
-position = Vector2( 120.619, 81.3929 )
+position = Vector2( 644.55, 126.056 )
 collision_layer = 4
-patrol_paths = NodePath("../../TargetPaths")
+target_paths = NodePath("../../TargetPaths")
+loop_path = NodePath("../../TargetPaths/Path2")
