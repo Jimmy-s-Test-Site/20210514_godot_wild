@@ -27,17 +27,17 @@ func _ready() -> void:
 
 var move_direction = 0
 
-onready var _animation_player = $AdultAnimationPlayer
+onready var _animation_player = $AnimationPlayer
 
 func _physics_process(delta):
 	MovementLoop(delta)
 
-func _process(delta):
+func _process(_delta):
 	AnimationLoop()
 	#get_unit_offset() getter
 
 func MovementLoop(delta):
-	if (remote_transfer.get_unit_offset() < 1):   	#if not at end of loop (1.00f)
+	if (remote_transfer.get_unit_offset() < .950):   	#if not at end of loop (1.00f)
 		var prepos = remote_transfer.get_global_position() 		#get previous global position
 		remote_transfer.set_offset(remote_transfer.get_offset() + move_speed + delta) 
 		var pos = remote_transfer.get_global_position() 		#get new global position
@@ -50,16 +50,16 @@ func MovementLoop(delta):
 func Get_Random_Path():
 	var rng = RandomNumberGenerator.new()
 	rng.randomize()
-	var ChosenPath = rng.randi_range(0,1) #get a random integer between 0 and 1
+	var ChosenPath = rng.randi_range(0,2) #get a random integer between 0 and 1
 
 	print("Adult's ChosenPath is: ", ChosenPath)######
 	match ChosenPath:
 		0:
 			remote_transfer = get_node (str(patrol_paths, "/Door1TODoor2/PathFollow2D"))
-			print("Door1->Door2")#########
 		1:
 			remote_transfer = get_node (str(patrol_paths, "/Door1TODoor3/PathFollow2D"))
-			print("Door1->Door3")###########
+		2:
+			remote_transfer = get_node (str(patrol_paths, "/Path2/PathFollow2D"))
 
 
 #_animation_player.play("WalkingDown") #start walking down animation
@@ -74,7 +74,7 @@ func AnimationLoop():
 	elif move_direction <= -165 or move_direction >= 165:
 		animation_direction = "Left"
 	var animation = "Walking" + animation_direction
-	get_node("AdultAnimationPlayer").play(animation)
+	get_node("AnimationPlayer").play(animation)
 		
 	#IN RADIANS
 
