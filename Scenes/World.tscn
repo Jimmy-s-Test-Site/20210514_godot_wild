@@ -1,9 +1,28 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=53 format=2]
 
 [ext_resource path="res://Developers/Julian/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Developers/Julian/Cop/Cop.tscn" type="PackedScene" id=2]
 [ext_resource path="res://icon.png" type="Texture" id=3]
+[ext_resource path="res://Art/Map/a1.png" type="Texture" id=4]
 [ext_resource path="res://Developers/Justin/Child.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Art/Map/c2.png" type="Texture" id=6]
+[ext_resource path="res://Art/Map/e2.png" type="Texture" id=7]
+[ext_resource path="res://Art/Map/a2.png" type="Texture" id=8]
+[ext_resource path="res://Art/Map/c1.png" type="Texture" id=9]
+[ext_resource path="res://Art/Map/e1.png" type="Texture" id=10]
+[ext_resource path="res://Art/Map/e3.png" type="Texture" id=11]
+[ext_resource path="res://Art/Map/f2.png" type="Texture" id=12]
+[ext_resource path="res://Art/Map/a3.png" type="Texture" id=13]
+[ext_resource path="res://Art/Map/d2.png" type="Texture" id=14]
+[ext_resource path="res://Art/Map/d3.png" type="Texture" id=15]
+[ext_resource path="res://Art/Map/b1.png" type="Texture" id=16]
+[ext_resource path="res://Art/Map/f1.png" type="Texture" id=17]
+[ext_resource path="res://Art/Map/f3.png" type="Texture" id=18]
+[ext_resource path="res://Art/Map/b3.png" type="Texture" id=19]
+[ext_resource path="res://Art/Map/d1.png" type="Texture" id=20]
+[ext_resource path="res://Art/Map/c3.png" type="Texture" id=21]
+[ext_resource path="res://Art/Map/b2.png" type="Texture" id=22]
+[ext_resource path="res://Sound/Witch.ogg" type="AudioStream" id=23]
 
 [sub_resource type="Environment" id=1]
 background_mode = 4
@@ -53,7 +72,7 @@ _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 3427.17, -5366.72, 0, 0, 0, 0, 2350.96, -5402.36, 0, 0, 0, 0, 3455.68, -4497.2, 0, 0, 0, 0, 2358.09, -4547.09, 0, 0, 0, 0, 3427.17, -5366.72 )
 }
 
-[sub_resource type="Curve2D" id=30]
+[sub_resource type="Curve2D" id=9]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, -705.942, -2434.64, 0, 0, 0, 0, -715.456, -3267.08 )
 }
@@ -93,7 +112,7 @@ _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 2865.54, -5857.58, 0, 0, 0, 0, 2865.54, -4181.02 )
 }
 
-[sub_resource type="Curve2D" id=31]
+[sub_resource type="Curve2D" id=17]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, -1172.11, -294.061, 0, 0, 0, 0, -1172.11, -512.875, 0, 0, 0, 0, -1034.16, -427.252, 0, 0, 0, 0, -1172.11, -294.061 )
 }
@@ -238,10 +257,10 @@ curve = SubResource( 8 )
 [node name="Paths" type="Node2D" parent="WorldEnvironment/ChildrenGang"]
 
 [node name="Path1" type="Path2D" parent="WorldEnvironment/ChildrenGang/Paths"]
-curve = SubResource( 30 )
+curve = SubResource( 9 )
 
 [node name="PathFollow2D" type="PathFollow2D" parent="WorldEnvironment/ChildrenGang/Paths/Path1"]
-position = Vector2( -2929.79, -5697.43 )
+position = Vector2( -705.942, -2434.64 )
 rotate = false
 loop = false
 
@@ -346,9 +365,10 @@ update_rotation = false
 update_scale = false
 
 [node name="Path9" type="Path2D" parent="WorldEnvironment/ChildrenGang/Paths"]
-curve = SubResource( 31 )
+curve = SubResource( 17 )
 
 [node name="PathFollow2D9" type="PathFollow2D" parent="WorldEnvironment/ChildrenGang/Paths/Path9"]
+position = Vector2( -1172.11, -294.061 )
 rotate = false
 loop = false
 
@@ -358,23 +378,26 @@ update_rotation = false
 update_scale = false
 
 [node name="Child" parent="WorldEnvironment/ChildrenGang" instance=ExtResource( 5 )]
+position = Vector2( -705.942, -2434.64 )
 target_paths = NodePath("../Paths")
 loop_path = NodePath("../Paths/Path1")
 
 [node name="Child2" parent="WorldEnvironment/ChildrenGang" instance=ExtResource( 5 )]
-position = Vector2( -1663.17, -2557.78 )
-Move_Type = 1
+position = Vector2( -3069.17, -2941.78 )
+target_paths = NodePath("../Paths")
+loop_path = NodePath("../Paths/Path2")
 
 [node name="Child3" parent="WorldEnvironment/ChildrenGang" instance=ExtResource( 5 )]
-position = Vector2( -3205.37, -2526.38 )
-Move_Type = 1
+position = Vector2( -1781.45, -2916.26 )
+target_paths = NodePath("../Paths")
+loop_path = NodePath("../Paths/Path3")
 
 [node name="Child4" parent="WorldEnvironment/ChildrenGang" instance=ExtResource( 5 )]
 position = Vector2( -1213.87, -4917.71 )
 loop_path = NodePath("../Paths/Path4")
 
 [node name="Child5" parent="WorldEnvironment/ChildrenGang" instance=ExtResource( 5 )]
-position = Vector2( -2063.91, -5266.64 )
+position = Vector2( -2191.05, -5300.54 )
 target_paths = NodePath("../Paths")
 loop_path = NodePath("../Paths/Path5")
 
@@ -397,6 +420,10 @@ loop_path = NodePath("../Paths/Path8")
 position = Vector2( -1163.21, -413.05 )
 target_paths = NodePath("../Paths")
 loop_path = NodePath("../Paths/Path9")
+
+[node name="Child10" parent="WorldEnvironment/ChildrenGang" instance=ExtResource( 5 )]
+position = Vector2( -1663.17, -2557.78 )
+Move_Type = 1
 
 [node name="Colliders" type="Node" parent="WorldEnvironment"]
 
@@ -587,3 +614,83 @@ position = Vector2( -1328.01, -368.262 )
 position = Vector2( -59.6558, -52.9619 )
 rotation = 1.59398
 shape = SubResource( 29 )
+
+[node name="Background" type="Node2D" parent="."]
+position = Vector2( 15809, -1470 )
+scale = Vector2( 2.52, 2.2 )
+
+[node name="a1" type="Sprite" parent="Background"]
+position = Vector2( -7260, -2180 )
+texture = ExtResource( 4 )
+
+[node name="a2" type="Sprite" parent="Background"]
+position = Vector2( -6260, -2180 )
+texture = ExtResource( 8 )
+
+[node name="a3" type="Sprite" parent="Background"]
+position = Vector2( -5260, -2180 )
+texture = ExtResource( 13 )
+
+[node name="b1" type="Sprite" parent="Background"]
+position = Vector2( -7260, -1580 )
+texture = ExtResource( 16 )
+
+[node name="b2" type="Sprite" parent="Background"]
+position = Vector2( -6260, -1580 )
+texture = ExtResource( 22 )
+
+[node name="b3" type="Sprite" parent="Background"]
+position = Vector2( -5260, -1580 )
+texture = ExtResource( 19 )
+
+[node name="c1" type="Sprite" parent="Background"]
+position = Vector2( -7260, -980 )
+texture = ExtResource( 9 )
+
+[node name="c2" type="Sprite" parent="Background"]
+position = Vector2( -6260, -980 )
+texture = ExtResource( 6 )
+
+[node name="c3" type="Sprite" parent="Background"]
+position = Vector2( -5260, -980 )
+texture = ExtResource( 21 )
+
+[node name="d1" type="Sprite" parent="Background"]
+position = Vector2( -7260, -380 )
+texture = ExtResource( 20 )
+
+[node name="d2" type="Sprite" parent="Background"]
+position = Vector2( -6260, -380 )
+texture = ExtResource( 14 )
+
+[node name="d3" type="Sprite" parent="Background"]
+position = Vector2( -5260, -380 )
+texture = ExtResource( 15 )
+
+[node name="e1" type="Sprite" parent="Background"]
+position = Vector2( -7260, 220 )
+texture = ExtResource( 10 )
+
+[node name="e2" type="Sprite" parent="Background"]
+position = Vector2( -6260, 220 )
+texture = ExtResource( 7 )
+
+[node name="e3" type="Sprite" parent="Background"]
+position = Vector2( -5260, 220 )
+texture = ExtResource( 11 )
+
+[node name="f1" type="Sprite" parent="Background"]
+position = Vector2( -7260, 820 )
+texture = ExtResource( 17 )
+
+[node name="f2" type="Sprite" parent="Background"]
+position = Vector2( -6260, 820 )
+texture = ExtResource( 12 )
+
+[node name="f3" type="Sprite" parent="Background"]
+position = Vector2( -5260, 820 )
+texture = ExtResource( 18 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 23 )
+autoplay = true

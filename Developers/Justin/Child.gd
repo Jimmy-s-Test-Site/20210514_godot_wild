@@ -1,27 +1,16 @@
 extends KinematicBody2D
-
-enum DESTINATIONS { # 8 of them estimated
-	CLOTHING,
-	GROCERY,
-	HOME1,
-	HOME2,
-	HOME3,
-	SCHOOL,
-	BUSINESS,
-	BATHROOM
-}
-
 enum MOVETYPE {
 	LOOP,
+	STANDING,
 	WALK,
 	TRANSFORM
 }
 
 export(NodePath) var target_paths
 export(NodePath) var loop_path
-export(int) var move_speed = 2
+export(int) var move_speed = 5000
 export(MOVETYPE) var Move_Type = MOVETYPE.LOOP
-export(int) var min_patrol_point_distance = 500
+export(int) var min_patrol_point_distance = 5
 var patrol_points
 var patrol_index = 0
 var target := Vector2.ZERO
@@ -29,7 +18,7 @@ var movement := Vector2.ZERO
 var patrol_target := Vector2.ZERO
 var move_direction = 0
 
-onready var remote_transfer = get_node(str(target_paths, "/Door1TODoor2/PathFollow2D")) #str() concates the string names
+onready var remote_transfer = get_node(str(target_paths, "/Path1/PathFollow2D")) #str() concates the string names
 onready var _animation_player = $AnimationPlayer
 
 func _ready() -> void:
@@ -39,6 +28,8 @@ func _ready() -> void:
 		MOVETYPE.LOOP: #If movement type is loop (Go in pre-determined circle)
 			self.patrol_points = self.get_node(loop_path).curve.get_baked_points()
 		MOVETYPE.TRANSFORM: #if movement is stopped (Don't move but transform into candy)
+			pass
+		MOVETYPE.STANDING: #if movement is stopped (Don't move but transform into candy)
 			pass
 
 func _physics_process(delta: float) -> void:
@@ -58,14 +49,17 @@ func _physics_process(delta: float) -> void:
 			move_direction = (pos.angle_to_point(prepos) / PI)*180	#determine direction by previous->new global position
 		MOVETYPE.TRANSFORM: #if movement is stopped (transforming to candy)
 			pass #don't move as you are being transformed
+		MOVETYPE.STANDING: #Standing Still
+			pass #don't move
 
 func _process(_delta):
 	if Move_Type == MOVETYPE.TRANSFORM:
 		get_node("AnimationPlayer").play("Transform")
 		get_node("AnimationPlayer").stop()
+	elif Move_Type == MOVETYPE.STANDING:
+		pass #just stand there
 	else:
 		AnimationLoop()
-	#get_unit_offset() getter
 
 func MovementLoop(delta):
 	if (remote_transfer.get_unit_offset() < .950):   	#if not at end of loop (1.00f)
@@ -83,14 +77,13 @@ func MovementLoop(delta):
 func Get_Random_Path():
 	var rng = RandomNumberGenerator.new()
 	rng.randomize()
-	var ChosenPath = rng.randi_range(3,4) #get a random integer between 0 and 2
+	var ChosenPath = rng.randi_range(1,9) #get a random integer between 1 and 9
 
-	print("Child's ChosenPath is: ", ChosenPath)######
 	match ChosenPath:
-		0:
-			remote_transfer = get_node (str(target_paths, "/Door1TODoor2/PathFollow2D"))
+		0:#Shouldn't use
+			remote_transfer = get_node (str(target_paths, "/Path1/PathFollow2D"))
 		1:
-			remote_transfer = get_node (str(target_paths, "/Door1TODoor3/PathFollow2D"))
+			remote_transfer = get_node (str(target_paths, "/Path1/PathFollow2D"))
 		2:
 			remote_transfer = get_node (str(target_paths, "/Path2/PathFollow2D"))
 		3:
