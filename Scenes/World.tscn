@@ -24,7 +24,10 @@
 [ext_resource path="res://Art/Map/b2.png" type="Texture" id=22]
 [ext_resource path="res://Sound/Witch.ogg" type="AudioStream" id=23]
 
-[sub_resource type="Environment" id=1]
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 32, 32 )
+
+[sub_resource type="Environment" id=2]
 background_mode = 4
 fog_enabled = true
 glow_enabled = true
@@ -158,49 +161,40 @@ extents = Vector2( 325.968, 71.0987 )
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 512, 300 )
 
+[node name="icon" type="Sprite" parent="."]
+position = Vector2( 170.893, 360.668 )
+texture = ExtResource( 2 )
+
+[node name="icon2" type="Sprite" parent="."]
+position = Vector2( 427.566, 516.352 )
+texture = ExtResource( 2 )
+
+[node name="icon3" type="Sprite" parent="."]
+position = Vector2( 845.379, 426.704 )
+texture = ExtResource( 2 )
+
+[node name="KinematicBody2D" type="KinematicBody2D" parent="."]
+position = Vector2( 700, 200 )
+
+[node name="Sprite" type="Sprite" parent="KinematicBody2D"]
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
+position = Vector2( -1.18921, 0 )
+shape = SubResource( 1 )
+
+[node name="KinematicBody2D2" type="KinematicBody2D" parent="."]
+position = Vector2( 300, 200 )
+
+[node name="Sprite" type="Sprite" parent="KinematicBody2D2"]
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D2"]
+position = Vector2( -1.18921, 0 )
+shape = SubResource( 1 )
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 1 )
-
-[node name="Placeholder" type="Node2D" parent="WorldEnvironment"]
-position = Vector2( 1030.56, 214.509 )
-scale = Vector2( 8.99343, 8.99343 )
-
-[node name="Witch\' House" type="Sprite" parent="WorldEnvironment/Placeholder"]
-position = Vector2( 1.46933, -4.61787 )
-texture = ExtResource( 3 )
-
-[node name="CandyShop" type="Sprite" parent="WorldEnvironment/Placeholder"]
-position = Vector2( -10.5259, -172.551 )
-scale = Vector2( 0.604325, 0.583499 )
-texture = ExtResource( 3 )
-
-[node name="CandyShop2" type="Sprite" parent="WorldEnvironment/Placeholder"]
-position = Vector2( -36.5155, -593.05 )
-scale = Vector2( 0.604325, 0.583499 )
-texture = ExtResource( 3 )
-
-[node name="CandyShop3" type="Sprite" parent="WorldEnvironment/Placeholder"]
-position = Vector2( -247.098, -455.105 )
-scale = Vector2( 0.604325, 0.583499 )
-texture = ExtResource( 3 )
-
-[node name="CopsGang" type="Node" parent="WorldEnvironment"]
-
-[node name="Cop2" parent="WorldEnvironment/CopsGang" instance=ExtResource( 2 )]
-position = Vector2( -75.6267, -1002.14 )
-rotation = 0.25732
-patrol_path = NodePath("../Path2D2")
-player_path = NodePath("../../../Player")
-
-[node name="Path2D2" type="Path2D" parent="WorldEnvironment/CopsGang"]
-position = Vector2( -430.681, -868.918 )
-rotation = 0.0301144
-curve = SubResource( 2 )
-
-[node name="Cop3" parent="WorldEnvironment/CopsGang" instance=ExtResource( 2 )]
-position = Vector2( 76.9539, -1936.84 )
-patrol_path = NodePath("../Path2D3")
-player_path = NodePath("../../../Player")
+environment = SubResource( 2 )
 
 [node name="Path2D3" type="Path2D" parent="WorldEnvironment/CopsGang"]
 position = Vector2( -364.085, -1782.23 )
